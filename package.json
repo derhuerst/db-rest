@@ -1,0 +1,39 @@
+{
+	"private": true,
+	"name": "db-rest",
+	"description": "Work in progress.",
+	"version": "0.1.0",
+	"main": "index.js",
+	"files": [
+		"index.js",
+		"api.js",
+		"lib"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://github.com/derhuerst/db-rest",
+	"repository": "derhuerst/db-rest",
+	"bugs": "https://github.com/derhuerst/db-rest/issues",
+	"license": "ISC",
+	"keywords": [
+		"public",
+		"transport",
+		"api",
+		"http",
+		"rest"
+	],
+	"engines": {
+		"node": ">=6"
+	},
+	"dependencies": {
+		"compression": "^1.7.1",
+		"corser": "^2.0.1",
+		"express": "^4.16.2",
+		"hsts": "^2.1.0",
+		"morgan": "^1.9.0",
+		"nocache": "^2.0.0",
+		"shorthash": "^0.0.2"
+	},
+	"scripts": {
+		"start": "node index.js"
+	}
+}
