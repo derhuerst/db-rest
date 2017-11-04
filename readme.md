@@ -1,6 +1,6 @@
 # db-rest
 
-Work in progress.
+**A clean REST API wrapping around the [Deutsche Bahn](https://en.wikipedia.org/wiki/Deutsche_Bahn) API.**
 
 [![dependency status](https://img.shields.io/david/derhuerst/db-rest.svg)](https://david-dm.org/derhuerst/db-rest)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/db-rest.svg)

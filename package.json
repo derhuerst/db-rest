@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "db-rest",
-	"description": "Work in progress.",
+	"description": "A clean REST API wrapping around the Deutsche Bahn API.",
 	"version": "0.1.0",
 	"main": "index.js",
 	"files": [
@@ -19,7 +19,9 @@
 		"transport",
 		"api",
 		"http",
-		"rest"
+		"rest",
+		"deutsche bahn",
+		"db"
 	],
 	"engines": {
 		"node": ">=6"
@@ -29,6 +31,7 @@
 		"compression": "^1.7.1",
 		"corser": "^2.0.1",
 		"db-hafas": "^1.1.0",
+		"db-stations": "^1.22.0",
 		"express": "^4.16.2",
 		"hafas-departures-in-direction": "^0.1.0",
 		"hsts": "^2.1.0",

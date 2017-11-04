@@ -11,6 +11,7 @@ const nocache = require('nocache')
 const pkg = require('./package.json')
 const departures = require('./lib/departures')
 const journeys = require('./lib/journeys')
+const allStations = require('./lib/all-stations')
 
 
 
@@ -39,6 +40,7 @@ const noCache = nocache()
 
 api.get('/stations/:id/departures', noCache, departures)
 api.get('/journeys', noCache, journeys)
+api.get('/stations/all', allStations)
 
 
 
