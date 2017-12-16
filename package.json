@@ -33,7 +33,8 @@
 		"hafas-client": "^2.0.0-alpha.3",
 		"hafas-rest-api": "0.1.0-alpha.2",
 		"hsts": "^2.1.0",
-		"ndjson": "^1.5.0"
+		"ndjson": "^1.5.0",
+		"stream-filter": "^2.1.0"
 	},
 	"scripts": {
 		"start": "node index.js"
