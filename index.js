@@ -1,7 +1,6 @@
 'use strict'
 
-const hafas = require('hafas-client')
-const dbProfile = require('hafas-client/p/db')
+const hafas = require('db-hafas')
 const createApi = require('hafas-rest-api')
 const createLogging = require('hafas-rest-api/logging')
 const hsts = require('hsts')
@@ -17,8 +16,7 @@ const config = {
 	homepage: pkg.homepage
 }
 
-const client = hafas(dbProfile)
-const api = createApi(client, config)
+const api = createApi(hafas, config)
 
 api.use(createLogging())
 
