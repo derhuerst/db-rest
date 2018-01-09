@@ -7,6 +7,7 @@ const hsts = require('hsts')
 const pkg = require('./package.json')
 const stations = require('./lib/stations')
 const allStations = require('./lib/all-stations')
+const station = require('./lib/station')
 
 const config = {
 	hostname: process.env.HOSTNAME || '2.db.transport.rest',
@@ -19,6 +20,7 @@ const config = {
 const api = createApi(hafas, config, (api) => {
 	api.get('/stations', stations)
 	api.get('/stations/all', allStations)
+	api.get('/stations/:id', station)
 })
 
 api.listen(config.port, (err) => {
