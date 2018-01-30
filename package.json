@@ -28,13 +28,12 @@
 	},
 	"dependencies": {
 		"cli-native": "^1.0.0",
-		"db-hafas": "^2.0.0-alpha.2",
-		"db-stations": "^1.24.0",
-		"db-stations-autocomplete": "^1.0.0",
-		"hafas-rest-api": "0.1.0-alpha.10",
+		"db-hafas": "^2.1.0",
+		"db-stations": "^2.2.0",
+		"db-stations-autocomplete": "^2.0.1",
+		"hafas-rest-api": "^0.3.3",
 		"hsts": "^2.1.0",
-		"ndjson": "^1.5.0",
-		"stream-filter": "^2.1.0"
+		"ndjson": "^1.5.0"
 	},
 	"scripts": {
 		"start": "node index.js"
