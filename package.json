@@ -29,9 +29,9 @@
 	"dependencies": {
 		"cli-native": "^1.0.0",
 		"db-hafas": "^2.1.0",
-		"db-stations": "^2.2.0",
-		"db-stations-autocomplete": "^2.0.1",
-		"hafas-rest-api": "^0.3.3",
+		"db-stations": "^2.4.0",
+		"db-stations-autocomplete": "^2.1.0",
+		"hafas-rest-api": "^0.3.5",
 		"hsts": "^2.1.0",
 		"ndjson": "^1.5.0"
 	},
