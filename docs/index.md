@@ -163,3 +163,22 @@ Output from [`require('db-hafas').locations(…)`](https://github.com/derhuerst/
 curl 'https://1.db.transport.rest/locations?query=Alexanderplatz'
 curl 'https://1.db.transport.rest/locations?query=Pestalozzistra%C3%9Fe%2082%2C%20Berlin&poi=false&stations=false'
 ```
+
+
+## `GET /radar`
+
+- `north`: **Required.** Northern latitude.
+- `west`: **Required.** Western longtidue.
+- `south`: **Required.** Southern latitude.
+- `east`: **Required.** Eastern longtidue.
+- `results`: How many vehicles shall be shown? Default: `256`.
+- `duration`: Compute frames for how many seconds? Default: `30`.
+- `frames`: Number of frames to compute. Default: `3`.
+
+`Content-Type`: `application/json`
+
+### examples
+
+```shell
+curl 'https://1.db.transport.rest/radar?north=52.52411&west=13.41002&south=52.51942&east=13.41709'
+```
