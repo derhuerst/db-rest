@@ -13,8 +13,11 @@ const config = {
 	hostname: process.env.HOSTNAME || '2.db.transport.rest',
 	port: process.env.PORT || 3000,
 	name: pkg.name,
+	description: pkg.description,
 	homepage: pkg.homepage,
-	logging: true
+	docsLink: 'https://github.com/derhuerst/db-rest/blob/master/docs/index.md',
+	logging: true,
+	aboutPage: true
 }
 
 const api = createApi(hafas, config, (api) => {
