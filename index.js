@@ -10,12 +10,12 @@ const allStations = require('./lib/all-stations')
 const station = require('./lib/station')
 
 const config = {
-	hostname: process.env.HOSTNAME || '2.db.transport.rest',
+	hostname: process.env.HOSTNAME || '1.db.transport.rest',
 	port: process.env.PORT || 3000,
 	name: pkg.name,
 	description: pkg.description,
 	homepage: pkg.homepage,
-	docsLink: 'https://github.com/derhuerst/db-rest/blob/master/docs/index.md',
+	docsLink: 'https://github.com/derhuerst/db-rest/blob/1/docs/index.md',
 	logging: true,
 	aboutPage: true
 }
