@@ -21,6 +21,8 @@ npm install --production
 npm start
 ```
 
+[A Docker image is available as `derhuerst/db-rest`.](https://hub.docker.com/r/derhuerst/db-rest)
+
 
 ## Contributing
 
