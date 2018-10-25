@@ -17,7 +17,7 @@ const healthCheck = () => {
 
 const config = {
 	hostname: process.env.HOSTNAME || '2.db.transport.rest',
-	port: process.env.PORT || 3000,
+	port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
 	name: pkg.name,
 	description: pkg.description,
 	homepage: pkg.homepage,
