@@ -2,7 +2,6 @@
 
 const hafas = require('db-hafas')
 const createApi = require('hafas-rest-api')
-const hsts = require('hsts')
 
 const pkg = require('./package.json')
 const stations = require('./lib/stations')

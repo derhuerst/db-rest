@@ -2,7 +2,7 @@
 	"private": true,
 	"name": "db-rest",
 	"description": "A clean REST API wrapping around the Deutsche Bahn API.",
-	"version": "0.1.0",
+	"version": "2.0.0",
 	"main": "index.js",
 	"files": [
 		"index.js",
@@ -32,7 +32,6 @@
 		"db-stations": "^2.4.0",
 		"db-stations-autocomplete": "^2.1.0",
 		"hafas-rest-api": "^0.5.0",
-		"hsts": "^2.1.0",
 		"ndjson": "^1.5.0"
 	},
 	"scripts": {
