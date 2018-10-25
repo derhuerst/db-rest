@@ -1,6 +1,6 @@
 # [*Deutsche Bahn*](https://en.wikipedia.org/wiki/Deutsche_Bahn) Public Transport API
 
-**The public endpoint is [`1.db.transport.rest`](`https://1.db.transport.rest`).** This API returns data in the [*Friendly Public Transport Format* `1.0.1`](https://github.com/public-transport/friendly-public-transport-format/blob/1.0.1/spec/readme.md).
+**The public endpoint is [`2.db.transport.rest`](`https://2.db.transport.rest`).** This API returns data in the [*Friendly Public Transport Format* `1.2.0`](https://github.com/public-transport/friendly-public-transport-format/blob/1.2.0/spec/readme.md).
 
 *Note:* In order to improve this API, I would to know which software projects use it. Please send an **`X-Identifier` header (e.g. `my-awesome-tool`) to let me know who you are**. I you don't provide it, a hash of the client IP will be logged.
 
@@ -25,9 +25,9 @@ Passes all parameters into [`db-stations-autocomplete`](https://github.com/derhu
 ### examples
 
 ```shell
-curl 'https://1.db.transport.rest/stations?query=jungfernheide'
+curl 'https://2.db.transport.rest/stations?query=jungfernheide'
 # note the typo
-curl 'https://1.db.transport.rest/stations?query=jungfernhiede&fuzzy=true'
+curl 'https://2.db.transport.rest/stations?query=jungfernhiede&fuzzy=true'
 ```
 
 
@@ -46,7 +46,7 @@ Passes all parameters into [`db-stations`](https://github.com/derhuerst/db-stati
 ### examples
 
 ```shell
-curl 'https://1.db.transport.rest/stations?name=hannover&coordinates.latitude=52.3765387'
+curl 'https://2.db.transport.rest/stations?name=hannover&coordinates.latitude=52.3765387'
 ```
 
 
@@ -59,7 +59,7 @@ Dumps `full.json` from [`vbb-stations`](https://github.com/derhuerst/vbb-station
 ### examples
 
 ```shell
-curl 'https://1.db.transport.rest/stations/all'
+curl 'https://2.db.transport.rest/stations/all'
 ```
 
 
@@ -67,7 +67,7 @@ curl 'https://1.db.transport.rest/stations/all'
 
 Returns departures at a station.
 
-*Note:* As stated in the [*Friendly Public Transport Format* `1.0.1`](https://github.com/public-transport/friendly-public-transport-format/tree/1.0.1), the returned `departure` and `arrival` times include the current delay.
+*Note:* As stated in the [*Friendly Public Transport Format* `1.2.0`](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0), the returned `departure` and `arrival` times include the current delay.
 
 Passes all parameters into [`departures(…)` from `db-hafas`](https://github.com/derhuerst/db-hafas/blob/master/docs/departures.md).
 
@@ -79,7 +79,7 @@ Passes all parameters into [`departures(…)` from `db-hafas`](https://github.co
 ### examples
 
 ```shell
-curl 'https://1.db.transport.rest/stations/008011160/departures?when=tomorrow%206pm'
+curl 'https://2.db.transport.rest/stations/008011160/departures?when=tomorrow%206pm'
 ```
 
 
@@ -87,7 +87,7 @@ curl 'https://1.db.transport.rest/stations/008011160/departures?when=tomorrow%20
 
 Output from [`require('db-hafas').journeys(…)`](https://github.com/derhuerst/db-hafas#getting-started). Start location and end location must be either in [station format](#station-format) or in [POI/address format](#poiaddress-format) (you can mix them).
 
-*Note:* As stated in the [*Friendly Public Transport Format* `1.0.1`](https://github.com/public-transport/friendly-public-transport-format/tree/1.0.1), the returned `departure` and `arrival` times include the current delay.
+*Note:* As stated in the [*Friendly Public Transport Format* `1.2.0`](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0), the returned `departure` and `arrival` times include the current delay.
 
 ## station format
 
@@ -145,9 +145,9 @@ nationalExp
 ### examples
 
 ```shell
-curl 'https://1.db.transport.rest/journeys?from=008011162&to=008000281'
-curl 'https://1.db.transport.rest/journeys?from=008004158&to.name=Atze%20Musiktheater&to.latitude=52.543333&to.longitude=13.351686'
-curl 'https://1.db.transport.rest/journeys?from=…&to=…&results=3&bus=false&tickets=true'
+curl 'https://2.db.transport.rest/journeys?from=008011162&to=008000281'
+curl 'https://2.db.transport.rest/journeys?from=008004158&to.name=Atze%20Musiktheater&to.latitude=52.543333&to.longitude=13.351686'
+curl 'https://2.db.transport.rest/journeys?from=…&to=…&results=3&bus=false&tickets=true'
 ```
 
 
@@ -166,8 +166,8 @@ Output from [`require('db-hafas').locations(…)`](https://github.com/derhuerst/
 ### examples
 
 ```shell
-curl 'https://1.db.transport.rest/locations?query=Alexanderplatz'
-curl 'https://1.db.transport.rest/locations?query=Pestalozzistra%C3%9Fe%2082%2C%20Berlin&poi=false&stations=false'
+curl 'https://2.db.transport.rest/locations?query=Alexanderplatz'
+curl 'https://2.db.transport.rest/locations?query=Pestalozzistra%C3%9Fe%2082%2C%20Berlin&poi=false&stations=false'
 ```
 
 
@@ -186,5 +186,5 @@ curl 'https://1.db.transport.rest/locations?query=Pestalozzistra%C3%9Fe%2082%2C%
 ### examples
 
 ```shell
-curl 'https://1.db.transport.rest/radar?north=52.52411&west=13.41002&south=52.51942&east=13.41709'
+curl 'https://2.db.transport.rest/radar?north=52.52411&west=13.41002&south=52.51942&east=13.41709'
 ```
