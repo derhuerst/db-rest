@@ -31,6 +31,7 @@
 		"db-hafas": "^3.0.1",
 		"db-stations": "^2.4.0",
 		"db-stations-autocomplete": "^2.1.0",
+		"hafas-client-health-check": "^1.0.1",
 		"hafas-rest-api": "^1.1.0",
 		"ndjson": "^1.5.0"
 	},

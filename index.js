@@ -2,6 +2,7 @@
 
 const createHafas = require('db-hafas')
 const createApi = require('hafas-rest-api')
+const createHealthCheck = require('hafas-client-health-check')
 
 const pkg = require('./package.json')
 const stations = require('./lib/stations')
@@ -10,10 +11,8 @@ const station = require('./lib/station')
 
 const hafas = createHafas(pkg.name)
 
-const healthCheck = () => {
-	return hafas.station('8011306')
-	.then(st => !!st)
-}
+const berlinHbf = '8011160'
+const healthCheck = createHealthCheck(hafas, berlinHbf)
 
 const config = {
 	hostname: process.env.HOSTNAME || '2.db.transport.rest',
