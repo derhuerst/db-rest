@@ -112,7 +112,7 @@ Output from [`require('db-hafas').journeys(…)`](https://github.com/derhuerst/d
 - `when`: A [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) or anything parsable by [`parse-messy-time`](https://github.com/substack/parse-messy-time#example). Default: now.
 - `results`: Maximum number of results. Default: `5`.
 - `via`: Station ID. Default: `null`.
-- `passedStations`: Return stations on the way? Default: `false`.
+- `stopovers`: Return stations on the way? Default: `false`.
 - `transfers`: Maximum number of transfers. Default: `5`.
 - `transferTime`: Minimum time in minutes for a single transfer. Default: `0`.
 - `accessibility`: Possible values: `partial`, `complete`. Default: `none`.
