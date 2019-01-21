@@ -109,7 +109,9 @@ Output from [`require('db-hafas').journeys(…)`](https://github.com/derhuerst/d
 
 ## other parameters
 
-- `when`: A [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) or anything parsable by [`parse-messy-time`](https://github.com/substack/parse-messy-time#example). Default: now.
+- `departure`/`arrival`: A [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) or anything parsable by [`parse-messy-time`](https://github.com/substack/parse-messy-time#example). Default: now. Use either `departure` or `arrival`.
+- `earlierThan`: By passing an identifier from another query, get earlier journeys than before. Mutually exlusive with `laterThan`, `departure` & `arrival`.
+- `laterThan`: By passing an identifier from another query, get later journeys than before. Mutually exclusive with `earlierThan`, `departure` & `arrival`.
 - `results`: Maximum number of results. Default: `5`.
 - `via`: Station ID. Default: `null`.
 - `stopovers`: Return stations on the way? Default: `false`.
@@ -118,17 +120,14 @@ Output from [`require('db-hafas').journeys(…)`](https://github.com/derhuerst/d
 - `accessibility`: Possible values: `partial`, `complete`. Default: `none`.
 - `bike`: Return only bike-friendly journeys. Default: `false`.
 - `tickets`: Return information about available tickets. Default: `false`.
+- `language`: Language to get results in. Default: `en`.
+- `polylines`: Return a shape for each leg? Default: `false`.
+- `remarks`: Parse & expose hints & warnings? Default: `true`.
+- `startWithWalking`: Consider walking to nearby stations at the beginning of a journey? Default: `true`.
+- `scheduledDays`: Parse which days each journey is valid on? Default: `false`.
 
-taxi
-tram
-bus
-ferry
-subway
-suburban
-regional
-regionalExp
-national
-nationalExp
+You can filter by means of transportation using these parameters:
+
 - `taxi`: Include taxis? Default: `false`.
 - `tram`: Include [trams](https://en.wikipedia.org/wiki/Tram)? Default: `true`.
 - `ferry`: Include [ferries](https://en.wikipedia.org/wiki/Ferry)? Default: `true`.
