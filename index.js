@@ -1,5 +1,7 @@
 'use strict'
 
+const {readFileSync} = require('fs')
+const {join} = require('path')
 const createHafas = require('db-hafas')
 const createApi = require('hafas-rest-api')
 const createHealthCheck = require('hafas-client-health-check')
@@ -8,6 +10,8 @@ const pkg = require('./package.json')
 const stations = require('./lib/stations')
 const allStations = require('./lib/all-stations')
 const station = require('./lib/station')
+
+const docsAsMarkdown = readFileSync(join(__dirname, 'docs', 'index.md'), {encoding: 'utf8'})
 
 const hafas = createHafas(pkg.name)
 
@@ -21,10 +25,11 @@ const config = {
 	description: pkg.description,
 	homepage: pkg.homepage,
 	version: pkg.version,
-	docsLink: 'https://github.com/derhuerst/db-rest/blob/2/docs/index.md',
+	docsLink: '/docs',
 	logging: true,
 	healthCheck,
-	aboutPage: true
+	aboutPage: true,
+	docsAsMarkdown
 }
 
 const attachAdditionalHandlers = (api) => {
