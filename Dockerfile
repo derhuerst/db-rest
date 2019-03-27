@@ -3,11 +3,14 @@ FROM node:alpine
 WORKDIR /app
 ADD . /app
 
-RUN npm install --production
+RUN apk add --update git bash && \
+	npm install --production && \
+	apk del git && \
+	rm -rf /tmp/* /var/cache/apk/*
 
 EXPOSE 3000
 
-ENV HOSTNAME db.transport.rest
+ENV HOSTNAME 3.db.transport.rest
 ENV PORT 3000
 
-CMD ["npm", "start"]
+CMD ["/bin/sh", "docker-entrypoint.sh"]
