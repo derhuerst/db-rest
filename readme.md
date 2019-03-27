@@ -4,8 +4,9 @@
 
 [API Documentation](docs/index.md) | [Why?](docs/why.md)
 
-![db-rest architecture diagram](https://rawgit.com/derhuerst/db-rest/db-rest/architecture.svg)
+![db-rest architecture diagram](architecture.svg)
 
+[![Docker build status](https://img.shields.io/docker/build/derhuerst/db-rest.svg)](https://hub.docker.com/r/derhuerst/db-rest/)
 [![dependency status](https://img.shields.io/david/derhuerst/db-rest.svg)](https://david-dm.org/derhuerst/db-rest)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/db-rest.svg)
 [![gitter channel](https://badges.gitter.im/derhuerst/db-rest.svg)](https://gitter.im/derhuerst/db-rest)
