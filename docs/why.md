@@ -4,13 +4,13 @@
 
 ## Realtime Data
 
-This API returns realtime data whenever its upstream, the [API for DB's mobile app](https://gist.github.com/derhuerst/2a735268bd82a0a6779633f15dceba33), provides it.
+This API returns realtime data whenever its upstream API, which [DB's mobile app uses as well](https://gist.github.com/derhuerst/2a735268bd82a0a6779633f15dceba33), provides it.
 
 ## No API Key
 
 Especially on web sites/apps, it is a subpar solution to the send API keys to the client. Also, you have to obtain these keys manually and cannot automatically revoke them. **This API doesn't require a key.**
 
-## Sane Markup
+## Clean Markup
 
 Compare the official API:
 

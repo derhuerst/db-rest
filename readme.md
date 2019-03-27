@@ -1,6 +1,6 @@
 # db-rest
 
-**A clean REST API wrapping around the [Deutsche Bahn](https://en.wikipedia.org/wiki/Deutsche_Bahn) [API](https://github.com/derhuerst/db-hafas#db-hafas).**
+**A clean REST API wrapping the [Deutsche Bahn](https://en.wikipedia.org/wiki/Deutsche_Bahn) [API](https://github.com/derhuerst/db-hafas#db-hafas).**
 
 [API Documentation](docs/index.md) | [Why?](docs/why.md)
 
@@ -23,6 +23,11 @@ npm start
 ```
 
 [A Docker image is available as `derhuerst/db-rest`.](https://hub.docker.com/r/derhuerst/db-rest)
+
+
+## Usage
+
+**[API documentation](docs/index.md)**
 
 
 ## Contributing
