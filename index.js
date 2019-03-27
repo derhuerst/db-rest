@@ -33,7 +33,7 @@ const pHafas = (() => {
 })()
 
 const config = {
-	hostname: process.env.HOSTNAME || '2.db.transport.rest',
+	hostname: process.env.HOSTNAME || '3.db.transport.rest',
 	port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
 	name: pkg.name,
 	description: pkg.description,

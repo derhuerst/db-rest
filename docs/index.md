@@ -1,6 +1,6 @@
 # [*Deutsche Bahn*](https://en.wikipedia.org/wiki/Deutsche_Bahn) Public Transport API
 
-**The public endpoint is [`2.db.transport.rest`](`https://2.db.transport.rest`).** This API returns data in the [*Friendly Public Transport Format* `1.2.1`](https://github.com/public-transport/friendly-public-transport-format/blob/1.2.1/spec/readme.md).
+**The public endpoint is [`3.db.transport.rest`](`https://3.db.transport.rest/`).** This API returns data in the [*Friendly Public Transport Format* `1.2.1`](https://github.com/public-transport/friendly-public-transport-format/blob/1.2.1/spec/readme.md).
 
 *Note:* In order to improve this API, I would like to know which software projects use it. Please send an **`X-Identifier` header (e.g. `my-awesome-tool`) to let me know who you are**. I you don't provide it, a hash of the client IP will be logged.
 
@@ -34,7 +34,7 @@
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/stops/nearby?latitude=52.52725&longitude=13.4123'
+curl 'https://3.db.transport.rest/stops/nearby?latitude=52.52725&longitude=13.4123'
 ```
 
 
@@ -48,7 +48,7 @@ curl 'https://2.db.transport.rest/stops/nearby?latitude=52.52725&longitude=13.41
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/stops/900000013102'
+curl 'https://3.db.transport.rest/stops/900000013102'
 ```
 
 
@@ -72,9 +72,9 @@ Returns departures at a stop/station.
 
 ```shell
 # at U Kottbusser Tor, in direction U Görlitzer Bahnhof
-curl 'https://2.db.transport.rest/stops/900000013102/departures?direction=900000014101&duration=10'
+curl 'https://3.db.transport.rest/stops/900000013102/departures?direction=900000014101&duration=10'
 # at U Kottbusser Tor, without direction
-curl 'https://2.db.transport.rest/stops/900000013102/departures?when=tomorrow%206pm'
+curl 'https://3.db.transport.rest/stops/900000013102/departures?when=tomorrow%206pm'
 ```
 
 
@@ -131,9 +131,9 @@ Output from [`hafas.journeys(…)`](https://github.com/public-transport/hafas-cl
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/journeys?from=900000017104&to=900000017101'
-curl 'https://2.db.transport.rest/journeys?from=900000023201&to.name=ATZE%20Musiktheater&to.latitude=52.543333&to.longitude=13.351686'
-curl 'https://2.db.transport.rest/journeys?from=…&to=…&results=3&bus=false&tickets=true'
+curl 'https://3.db.transport.rest/journeys?from=900000017104&to=900000017101'
+curl 'https://3.db.transport.rest/journeys?from=900000023201&to.name=ATZE%20Musiktheater&to.latitude=52.543333&to.longitude=13.351686'
+curl 'https://3.db.transport.rest/journeys?from=…&to=…&results=3&bus=false&tickets=true'
 ```
 
 
@@ -151,7 +151,7 @@ Output from [`hafas.refreshJourney(…)`](https://github.com/public-transport/ha
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/journeys/T%24A%3D1%40O%3DS%2BU%20Westhafen%20(Berlin)%40L%3D900001201%40a%3D128%40%24A%3D1%40O%3DS%2BU%20Gesundbrunnen%20Bhf%20(Berlin)%40L%3D900007102%40a%3D128%40%24201808061945%24201808061950%24%20%20%20%20%20S41%24%0A'
+curl 'https://3.db.transport.rest/journeys/T%24A%3D1%40O%3DS%2BU%20Westhafen%20(Berlin)%40L%3D900001201%40a%3D128%40%24A%3D1%40O%3DS%2BU%20Gesundbrunnen%20Bhf%20(Berlin)%40L%3D900007102%40a%3D128%40%24201808061945%24201808061950%24%20%20%20%20%20S41%24%0A'
 ```
 
 
@@ -170,7 +170,7 @@ Output from [`hafas.trip(…)`](https://github.com/public-transport/hafas-client
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/trips/1|32082|1|86|26062017?lineName=RE7'
+curl 'https://3.db.transport.rest/trips/1|32082|1|86|26062017?lineName=RE7'
 ```
 
 
@@ -192,8 +192,8 @@ Output from [`hafas.locations(…)`](https://github.com/public-transport/hafas-c
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/locations?query=Alexanderplatz'
-curl 'https://2.db.transport.rest/locations?query=Pestalozzistra%C3%9Fe%2082%2C%20Berlin&poi=false&stations=false'
+curl 'https://3.db.transport.rest/locations?query=Alexanderplatz'
+curl 'https://3.db.transport.rest/locations?query=Pestalozzistra%C3%9Fe%2082%2C%20Berlin&poi=false&stations=false'
 ```
 
 
@@ -210,9 +210,9 @@ Passes all parameters into [`db-stations-autocomplete`](https://github.com/derhu
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/stations?query=jungfernheide'
+curl 'https://3.db.transport.rest/stations?query=jungfernheide'
 # note the typo
-curl 'https://2.db.transport.rest/stations?query=jungfernhiede&fuzzy=true'
+curl 'https://3.db.transport.rest/stations?query=jungfernhiede&fuzzy=true'
 ```
 
 
@@ -231,7 +231,7 @@ Passes all parameters into [`db-stations`](https://github.com/derhuerst/db-stati
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/stations?name=hannover&coordinates.latitude=52.3765387'
+curl 'https://3.db.transport.rest/stations?name=hannover&coordinates.latitude=52.3765387'
 ```
 
 
@@ -244,5 +244,5 @@ Dumps `full.json` from [`vbb-stations`](https://github.com/derhuerst/vbb-station
 ### examples
 
 ```shell
-curl 'https://2.db.transport.rest/stations/all'
+curl 'https://3.db.transport.rest/stations/all'
 ```
