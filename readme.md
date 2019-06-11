@@ -13,21 +13,27 @@
 [![support me on Patreon](https://img.shields.io/badge/support%20me-on%20patreon-fa7664.svg)](https://patreon.com/derhuerst)
 
 
-## Installing
+## installing & running
 
+### via Docker
+
+A Docker image [is available as `derhuerst/db-rest`](https://hub.docker.com/r/derhuerst/db-rest).
+
+```shell
+docker run -d -p 3000:3000 derhuerst/db-rest
 ```
+
+### manually
+
+```shell
 git clone https://github.com/derhuerst/db-rest.git
 cd db-rest
+git checkout 3
 npm install --production
 npm start
 ```
 
-[A Docker image is available as `derhuerst/db-rest`.](https://hub.docker.com/r/derhuerst/db-rest)
-
-
-## Usage
-
-**[API documentation](docs/index.md)**
+To keep the API running permanently, use tools like [`forever`](https://github.com/foreverjs/forever#forever), [`pm2`](http://pm2.keymetrics.io) or [`systemd`](https://wiki.debian.org/systemd).
 
 
 ## Contributing
