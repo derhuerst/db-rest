@@ -145,7 +145,7 @@ You can filter by means of transportation using these parameters:
 
 ```shell
 curl 'https://2.db.transport.rest/journeys?from=008011162&to=008000281'
-curl 'https://2.db.transport.rest/journeys?from=008004158&to.name=Atze%20Musiktheater&to.latitude=52.543333&to.longitude=13.351686'
+curl 'https://2.db.transport.rest/journeys?from=008004158&to.id=991598902&to.name=Atze%20Musiktheater&to.latitude=52.543333&to.longitude=13.351686'
 curl 'https://2.db.transport.rest/journeys?from=…&to=…&results=3&bus=false&tickets=true'
 ```
 
