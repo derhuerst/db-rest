@@ -41,7 +41,7 @@ Passes all parameters into [`db-stations`](https://github.com/derhuerst/db-stati
 - `coordinates.longitude`: Filter by longitude.
 - `weight`: Filter by weight.
 
-`Content-Type`: `application/json`
+`Content-Type`: [`application/x-ndjson`](http://ndjson.org/)
 
 ### examples
 
