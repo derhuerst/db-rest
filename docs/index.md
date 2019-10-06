@@ -10,6 +10,8 @@
 - [`GET /stations`](#get-stations)
 - [`GET /stations/:id/departures`](#get-stationsiddepartures)
 - [`GET /journeys`](#get-journeys)
+- [`GET /journeys/:ref`](#get-journeysref)
+- [`GET /trips/:id`](#get-tripsid)
 - [`GET /locations`](#get-locations)
 
 ## `GET /stations?query=…`
@@ -147,6 +149,43 @@ You can filter by means of transportation using these parameters:
 curl 'https://2.db.transport.rest/journeys?from=008011162&to=008000281'
 curl 'https://2.db.transport.rest/journeys?from=008004158&to.id=991598902&to.name=Atze%20Musiktheater&to.latitude=52.543333&to.longitude=13.351686'
 curl 'https://2.db.transport.rest/journeys?from=…&to=…&results=3&bus=false&tickets=true'
+```
+
+
+## `GET /journeys/:ref`
+
+Output from [`hafas.refreshJourney(…)`](https://github.com/public-transport/hafas-client/blob/4/docs/refresh-journey.md).
+
+- `stopovers`: Return stations on the way? Default: `true`.
+- `polylines`: Return shape of each journey leg? Default: `false`.
+- `remarks`: Parse & expose hints & warnings? Default: `true`.
+- `language`: Language of the results. Default: `en`.
+
+`Content-Type`: `application/json`
+
+### examples
+
+```shell
+curl 'https://2.db.transport.rest/journeys/%C2%B6HKI%C2%B6T%24A%3D1%40O%3DBerlin%20Hbf%20(tief)%40L%3D8098160%40a%3D128%40%24A%3D1%40O%3DHamburg%20Hbf%40L%3D8002549%40a%3D128%40%24201910062138%24201910062333%24ICE%20%20502%24%241%24%C2%A7T%24A%3D1%40O%3DHamburg%20Hbf%40L%3D8002549%40a%3D128%40%24A%3D1%40O%3DMannheim%20Hbf%40L%3D8000244%40a%3D128%40%24201910062345%24201910070625%24ICE%201271%24%241%24%C2%A7T%24A%3D1%40O%3DMannheim%20Hbf%40L%3D8000244%40a%3D128%40%24A%3D1%40O%3DStuttgart%20Hbf%40L%3D8000096%40a%3D128%40%24201910070629%24201910070707%24ICE%20%20991%24%241%24%C2%A7T%24A%3D1%40O%3DStuttgart%20Hbf%40L%3D8000096%40a%3D128%40%24A%3D1%40O%3DT%C3%BCbingen%20Hbf%40L%3D8000141%40a%3D128%40%24201910070722%24201910070823%24RE%2022011%24%241%24%0A'
+```
+
+
+## `GET /trips/:id`
+
+Output from [`hafas.trip(…)`](https://github.com/public-transport/hafas-client/blob/4/docs/trip.md).
+
+- `lineName`: **Required.** Line name of the part's mode of transport, e.g. `RE 7`.
+- `stopovers`: Return stations on the way? Default: `true`.
+- `remarks`: Parse & expose hints & warnings? Default: `true`.
+- `polyline`: Return a shape for the trip? Default: `false`.
+- `language`: Language of the results. Default: `en`.
+
+`Content-Type`: `application/json`
+
+### examples
+
+```shell
+curl 'https://your-api-endpoint/trips/1|229086|0|80|6102019?lineName=ICE+993'
 ```
 
 
