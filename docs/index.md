@@ -156,7 +156,7 @@ curl 'https://2.db.transport.rest/journeys?from=…&to=…&results=3&bus=false&t
 
 Output from [`hafas.refreshJourney(…)`](https://github.com/public-transport/hafas-client/blob/4/docs/refresh-journey.md).
 
-- `stopovers`: Return stations on the way? Default: `true`.
+- `stopovers`: Return stations on the way? Default: `false`.
 - `polylines`: Return shape of each journey leg? Default: `false`.
 - `remarks`: Parse & expose hints & warnings? Default: `true`.
 - `language`: Language of the results. Default: `en`.
