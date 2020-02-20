@@ -54,7 +54,7 @@ curl 'https://2.db.transport.rest/stations?name=hannover&coordinates.latitude=52
 
 ## `GET /stations/all`
 
-Dumps `full.json` from [`vbb-stations`](https://github.com/derhuerst/vbb-stations).
+Dumps `full.json` from [`db-stations`](https://github.com/derhuerst/db-stations).
 
 `Content-Type`: `application/json`
 
