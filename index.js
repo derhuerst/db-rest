@@ -19,7 +19,7 @@ const berlinHbf = '8011160'
 const healthCheck = createHealthCheck(hafas, berlinHbf)
 
 const config = {
-	hostname: process.env.HOSTNAME || '2.db.transport.rest',
+	hostname: process.env.HOSTNAME || 'localhost',
 	port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
 	name: pkg.name,
 	description: pkg.description,

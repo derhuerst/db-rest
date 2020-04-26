@@ -10,7 +10,7 @@
 		"lib"
 	],
 	"author": "Jannis R <mail@jannisr.de>",
-	"homepage": "https://github.com/derhuerst/db-rest",
+	"homepage": "https://github.com/derhuerst/db-rest/tree/2",
 	"repository": "derhuerst/db-rest",
 	"bugs": "https://github.com/derhuerst/db-rest/issues",
 	"license": "ISC",

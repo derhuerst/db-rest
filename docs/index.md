@@ -71,7 +71,7 @@ Returns departures at a station.
 
 *Note:* As stated in the [*Friendly Public Transport Format* `1.2.0`](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0), the returned `departure` and `arrival` times include the current delay.
 
-Passes all parameters into [`departures(…)` from `db-hafas`](https://github.com/derhuerst/db-hafas/blob/master/docs/departures.md).
+Passes all parameters into [`departures(…)` from `db-hafas`](https://github.com/public-transport/db-hafas/blob/master/docs/departures.md).
 
 - `when`: A [UNIX timestamp](https://en.wikipedia.org/wiki/Unix_time) or anything parsable by [`parse-messy-time`](https://github.com/substack/parse-messy-time#example). Default: now.
 - `duration`: Show departures for the next `n` minutes. Default: `10`.
@@ -87,7 +87,7 @@ curl 'https://2.db.transport.rest/stations/008011160/departures?when=tomorrow%20
 
 ## `GET /journeys`
 
-Output from [`require('db-hafas').journeys(…)`](https://github.com/derhuerst/db-hafas#getting-started). Start location and end location must be either in [station format](#station-format) or in [POI/address format](#poiaddress-format) (you can mix them).
+Output from [`require('db-hafas').journeys(…)`](https://github.com/public-transport/db-hafas#getting-started). Start location and end location must be either in [station format](#station-format) or in [POI/address format](#poiaddress-format) (you can mix them).
 
 *Note:* As stated in the [*Friendly Public Transport Format* `1.2.0`](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0), the returned `departure` and `arrival` times include the current delay.
 
@@ -191,7 +191,7 @@ curl 'https://your-api-endpoint/trips/1|229086|0|80|6102019?lineName=ICE+993'
 
 ## `GET /locations`
 
-Output from [`require('db-hafas').locations(…)`](https://github.com/derhuerst/db-hafas/blob/master/docs/locations.md)
+Output from [`require('db-hafas').locations(…)`](https://github.com/public-transport/db-hafas/blob/master/docs/locations.md)
 
 - `query`: **Required.** (e.g. `Alexanderplatz`)
 - `results`: How many stations shall be shown? Default: `10`.

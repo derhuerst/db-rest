@@ -1,6 +1,6 @@
 # db-rest
 
-**A clean REST API wrapping around the [Deutsche Bahn](https://en.wikipedia.org/wiki/Deutsche_Bahn) [API](https://github.com/derhuerst/db-hafas#db-hafas).**
+**A clean REST API wrapping around the [Deutsche Bahn](https://en.wikipedia.org/wiki/Deutsche_Bahn) [API](https://github.com/public-transport/db-hafas#db-hafas).**
 
 [API Documentation](docs/index.md) | [Why?](docs/why.md)
 
