@@ -13,4 +13,4 @@ EXPOSE 3000
 ENV HOSTNAME 2.db.transport.rest
 ENV PORT 3000
 
-CMD ["/bin/sh", "docker-entrypoint.sh"]
+CMD ["node", "index.js"]
