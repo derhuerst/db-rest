@@ -19,17 +19,20 @@
 		"db"
 	],
 	"engines": {
-		"node": ">=6"
+		"node": ">=10"
 	},
 	"dependencies": {
 		"cli-native": "^1.0.0",
-		"db-hafas": "^3.0.1",
-		"db-stations": "^2.4.0",
-		"db-stations-autocomplete": "^2.1.0",
+		"db-hafas": "^5.0.2",
+		"db-stations": "^3.0.0",
+		"db-stations-autocomplete": "^2.2.0",
 		"etag": "^1.8.1",
-		"hafas-client-health-check": "^1.0.1",
-		"hafas-rest-api": "^1.2.1",
+		"hafas-client-health-check": "^2.1.1",
+		"hafas-rest-api": "^3.3.0",
 		"serve-buffer": "^2.0.0"
+	},
+	"devDependencies": {
+		"pino-pretty": "^4.0.0"
 	},
 	"scripts": {
 		"start": "node index.js"

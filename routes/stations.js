@@ -109,4 +109,27 @@ const stationsRoute = (req, res, next) => {
 	.catch(next)
 }
 
+stationsRoute.queryParameters = {
+	query: {
+		description: 'Find stations by name using [`db-stations-autocomplete`](https://npmjs.com/package/db-stations-autocomplete).',
+		type: 'string',
+		defaultStr: '–',
+	},
+	limit: {
+		description: '*If `query` is used:* Return at most `n` stations.',
+		type: 'number',
+		default: 3,
+	},
+	fuzzy: {
+		description: '*If `query` is used:* Find stations despite typos.',
+		type: 'boolean',
+		default: false,
+	},
+	completion: {
+		description: '*If `query` is used:* Autocomplete stations.',
+		type: 'boolean',
+		default: true,
+	},
+}
+
 module.exports = stationsRoute

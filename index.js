@@ -7,9 +7,8 @@ const createApi = require('hafas-rest-api')
 const createHealthCheck = require('hafas-client-health-check')
 
 const pkg = require('./package.json')
-const stations = require('./lib/stations')
-const allStations = require('./lib/all-stations')
-const station = require('./lib/station')
+const stations = require('./routes/stations')
+const station = require('./routes/station')
 
 const docsAsMarkdown = readFileSync(join(__dirname, 'docs', 'index.md'), {encoding: 'utf8'})
 
@@ -18,6 +17,12 @@ const hafas = createHafas(pkg.name)
 const berlinHbf = '8011160'
 const healthCheck = createHealthCheck(hafas, berlinHbf)
 
+const modifyRoutes = (routes) => {
+	routes['/stations'] = stations
+	routes['/stations/:id'] = station
+	return routes
+}
+
 const config = {
 	hostname: process.env.HOSTNAME || 'localhost',
 	port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
@@ -25,26 +30,23 @@ const config = {
 	description: pkg.description,
 	homepage: pkg.homepage,
 	version: pkg.version,
+	docsAsMarkdown,
 	docsLink: '/docs',
 	logging: true,
-	healthCheck,
 	aboutPage: true,
-	docsAsMarkdown
+	etags: 'strong',
+	healthCheck,
+	modifyRoutes,
 }
 
-const attachAdditionalHandlers = (api) => {
-	api.get('/stations', stations)
-	api.get('/stations/all', allStations)
-	api.get('/stations/:id', station)
-}
-
-const api = createApi(hafas, config, attachAdditionalHandlers)
+const api = createApi(hafas, config, () => {})
 
 api.listen(config.port, (err) => {
+	const {logger} = api.locals
 	if (err) {
-		console.error(err)
-		process.exitCode = 1
+		logger.error(err)
+		process.exit(1)
 	} else {
-		console.info(`Listening on ${config.hostname}:${config.port}.`)
+		logger.info(`Listening on ${config.hostname}:${config.port}.`)
 	}
 })
