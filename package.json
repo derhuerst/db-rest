@@ -2,15 +2,10 @@
 	"private": true,
 	"name": "db-rest",
 	"description": "A clean REST API wrapping around the Deutsche Bahn API.",
-	"version": "2.0.0",
+	"version": "5.0.0",
 	"main": "index.js",
-	"files": [
-		"index.js",
-		"api.js",
-		"lib"
-	],
 	"author": "Jannis R <mail@jannisr.de>",
-	"homepage": "https://github.com/derhuerst/db-rest/tree/2",
+	"homepage": "https://github.com/derhuerst/db-rest/tree/5",
 	"repository": "derhuerst/db-rest",
 	"bugs": "https://github.com/derhuerst/db-rest/issues",
 	"license": "ISC",

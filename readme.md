@@ -1,6 +1,6 @@
 # db-rest
 
-**A clean REST API wrapping around the [Deutsche Bahn](https://en.wikipedia.org/wiki/Deutsche_Bahn) [API](https://github.com/public-transport/db-hafas#db-hafas).**
+**A clean REST API wrapping around the [Deutsche Bahn HAFAS API](https://github.com/public-transport/db-hafas#db-hafas).** It is deployed at [`v5.db.transport.rest`](https://v5.db.transport.rest/).
 
 [API Documentation](docs/index.md) | [Why?](docs/why.md)
 
@@ -17,10 +17,10 @@
 
 ### via Docker
 
-A Docker image [is available as `derhuerst/db-rest`](https://hub.docker.com/r/derhuerst/db-rest).
+A Docker image [is available as `derhuerst/db-rest:5`](https://hub.docker.com/r/derhuerst/db-rest:5).
 
 ```shell
-docker run -d -p 3000:3000 derhuerst/db-rest
+docker run -d -p 3000:3000 derhuerst/db-rest:5
 ```
 
 ### manually
@@ -28,7 +28,7 @@ docker run -d -p 3000:3000 derhuerst/db-rest
 ```shell
 git clone https://github.com/derhuerst/db-rest.git
 cd db-rest
-git checkout 2
+git checkout 5
 npm install --production
 npm start
 ```
