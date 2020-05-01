@@ -4,22 +4,24 @@
 
 ## Realtime Data
 
-This API returns realtime data whenever its upstream, the [API for DB's mobile app](https://gist.github.com/derhuerst/2a735268bd82a0a6779633f15dceba33), provides it.
+This API returns realtime data whenever its upstream, the [API for DB's mobile app](https://github.com/public-transport/hafas-client/blob/e02a20b1de59bda3cd380445b6105e4c46036636/p/db/readme.md), provides it.
 
 ## No API Key
 
 Especially on web sites/apps, it is a subpar solution to the send API keys to the client. Also, you have to obtain these keys manually and cannot automatically revoke them. **This API doesn't require a key.**
 
-## Sane Markup
+## CORS
 
-Compare the official API:
+If you want to use transport information on a web site/app, [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) must be enabled. Otherwise, you would have to send all requests through your own proxy server. **This API has CORS enabled.**
+
+## Readable Markup
+
+Compare the underlying HAFAS API:
 
 ```js
 {
 	cid: 'C-0',
 	date: '20171216',
-	dur: '043200',
-	chg: 2,
 	sDays: { /* … */ },
 	dep: {
 		locX: 0,
@@ -67,7 +69,7 @@ to this one:
 			subway: true,
 			tram: true,
 			taxi: false
-		}
+		},
 	},
 	destination: {
 		type: 'station',
@@ -78,40 +80,25 @@ to this one:
 			latitude: 48.150036,
 			longitude: 11.461624
 		},
-		products: {
-			nationalExp: true,
-			national: true,
-			regionalExp: false,
-			regional: true,
-			suburban: true,
-			bus: true,
-			ferry: false,
-			subway: false,
-			tram: true,
-			taxi: false
-		}
+		products: { /* … */ },
 	},
 	departure: '2017-12-16T11:54:00.000+01:00',
 	arrival: '2017-12-16T16:26:00.000+01:00',
-	price: {
-		amount: 150,
-		hint: null
-	}
 }
 ```
 
-## GZIP support
+## Caching-friendly
 
-Especially on cellular connections, gzipped responses improve the performance a lot.
+This API sends [`ETag`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) & [`Cache-Control`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) headers, allowing clients to refresh their state efficiently.
 
 ## HTTP/2
 
 [HTTP/2](https://http2.github.io/) allows multiple requests at a time, efficiently pipelines sequential requests and compresses headers. See [Cloudflare's HTTP/2 page](https://blog.cloudflare.com/http-2-for-web-developers/).
 
-## More Features
+## Proper HTTP, Proper REST
 
-This API enhances the functionality of their API with static data, which is used in e.g. `GET /stations`.
+This wrapper API follows [REST-ful design principles](https://restfulapi.net), it uses `GET`, and proper paths & headers.
 
 ## Monitoring
 
-There's a [status board](https://status.transport.rest) that indicates the health of the API endpoints.
+There's a [status board](https://status.transport.rest) that shows realtime uptime statistics.
