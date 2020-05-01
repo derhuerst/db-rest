@@ -35,6 +35,8 @@
 		"pino-pretty": "^4.0.0"
 	},
 	"scripts": {
+		"docs": "node api-docs.js >docs/api.md",
+		"build": "npm run docs",
 		"start": "node index.js"
 	}
 }
