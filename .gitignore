@@ -7,3 +7,6 @@ npm-debug.log
 
 /package-lock.json
 /dump.rdb
+
+/docs/*.html
+/docs/syntax.css
