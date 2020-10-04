@@ -59,7 +59,7 @@ const config = {
 	logging: true,
 	aboutPage: false,
 	etags: 'strong',
-	csp: `default-src 'none' style-src 'self' 'unsafe-inline'`,
+	csp: `default-src 'none' style-src 'self' 'unsafe-inline' img-src https:`,
 	healthCheck,
 	modifyRoutes,
 }

@@ -2,10 +2,11 @@
 
 **A clean REST API wrapping around the [Deutsche Bahn HAFAS API](https://github.com/public-transport/db-hafas#db-hafas).** It is deployed at [`v5.db.transport.rest`](https://v5.db.transport.rest/).
 
-[API Documentation](docs/index.md) | [Why?](docs/why.md)
+[**API Documentation**](docs/index.md)
 
 ![db-rest architecture diagram](architecture.svg)
 
+[![API status](https://badgen.net/uptime-robot/status/m784879516-8a977fa91b975fc3884a9857)](https://stats.uptimerobot.com/57wNLs39M/784879516)
 [![Docker build status](https://img.shields.io/docker/build/derhuerst/db-rest.svg)](https://hub.docker.com/r/derhuerst/db-rest/)
 [![dependency status](https://img.shields.io/david/derhuerst/db-rest.svg)](https://david-dm.org/derhuerst/db-rest)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/db-rest.svg)

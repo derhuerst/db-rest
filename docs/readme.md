@@ -1,9 +1,28 @@
 # `v5.db.transport.rest` documentation
 
-[`v5.db.transport.rest`](https://v5.db.transport.rest/) is a [REST API](https://restfulapi.net).
+[`v5.db.transport.rest`](https://v5.db.transport.rest/) is a [REST API](https://restfulapi.net) for the public transportation system in Germany.
 
-You can just use the API without authentication. In the future, we may [rate-limit](https://apisyouwonthate.com/blog/what-is-api-rate-limiting-all-about) your IP address if you make too many requests.
+[![API status](https://badgen.net/uptime-robot/status/m784879516-8a977fa91b975fc3884a9857)](https://stats.uptimerobot.com/57wNLs39M/784879516)
+
+Because it wraps [an API](https://github.com/public-transport/hafas-client/blob/master/readme.md#background) of [Deutsche Bahn](https://de.wikipedia.org/wiki/Deutsche_Bahn), it **includes most of the long-distance and regional traffic, as well as some international trains and local buses**. Essentially, it returns whatever data the [*DB Navigator* app](https://www.bahn.de/p/view/service/mobile/db-navigator.shtml) shows, **including realtime delays and disruptions**.
 
 - [Getting Started](getting-started.md)
 - [API documentation](api.md)
-- [Why this API?](why.md)
+
+## Why use this API?
+
+### Realtime Data
+
+This API returns realtime data whenever its upstream, the [API for DB's mobile app](https://github.com/public-transport/hafas-client/blob/33d7d30acf235c54887c6459a15fe581982c6a19/p/db/readme.md), provides it.
+
+### No API Key
+
+You can just use the API without authentication. There's a [rate limit](https://apisyouwonthate.com/blog/what-is-api-rate-limiting-all-about) of 100 requests/minute (burst 200 requests/minute) set up.
+
+### CORS
+
+This API has [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) enabled, so you can query it from any webpage.
+
+### Caching-friendly
+
+This API sends [`ETag`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) & [`Cache-Control`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) headers, allowing clients cache responses properly.
