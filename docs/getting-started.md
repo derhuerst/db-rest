@@ -316,4 +316,4 @@ Note that `departure` includes the `departureDelay`, and `arrival` includes the 
 
 ### 4. more features
 
-These are the basics. Check the full [API docs](api.md) for all features!
+These are the basics. Check the full [API docs](api.md) for all features or use the [OpenAPI playground](https://petstore.swagger.io/?url=https%3A%2F%2Fv5.db.transport.rest%2F.well-known%2Fservice-desc%0A) or explore the API!

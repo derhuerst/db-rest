@@ -25,4 +25,36 @@ const stationRoute = (req, res, next) => {
 	.catch(next)
 }
 
+stationRoute.openapiPaths = {
+	'/stations/{id}': {
+		get: {
+			summary: 'Returns a stop/station from `db-stations`.',
+			description: `\
+Returns a stop/station from [\`db-stations\`](https://npmjs.com/package/db-stations).`,
+			parameters: [{
+				name: 'id',
+				in: 'path',
+				description: 'Stop/station ID.',
+				required: true,
+				schema: {
+					type: 'string',
+				},
+			}],
+			responses: {
+				'2XX': {
+					description: 'A stop/station, in the [`db-stations` format](https://github.com/derhuerst/db-stations/blob/master/readme.md).',
+					content: {
+						'application/json': {
+							schema: {
+								type: 'object', // todo
+							},
+							// todo: example(s)
+						},
+					},
+				},
+			},
+		},
+	},
+}
+
 module.exports = stationRoute

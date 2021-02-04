@@ -8,6 +8,7 @@ Because it wraps [an API](https://github.com/public-transport/hafas-client/blob/
 
 - [Getting Started](getting-started.md)
 - [API documentation](api.md)
+- [OpenAPI playground](https://petstore.swagger.io/?url=https%3A%2F%2Fv5.db.transport.rest%2F.well-known%2Fservice-desc%0A)
 
 ## Why use this API?
 

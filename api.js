@@ -56,6 +56,7 @@ const config = {
 	homepage: pkg.homepage,
 	version: pkg.version,
 	docsLink: 'https://github.com/derhuerst/db-rest/blob/5/docs/readme.md',
+	openapiSpec: true,
 	logging: true,
 	aboutPage: false,
 	etags: 'strong',
