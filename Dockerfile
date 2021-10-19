@@ -1,11 +1,4 @@
 FROM node:alpine as builder
-LABEL org.opencontainers.image.title="db-rest"
-LABEL org.opencontainers.image.description="A clean REST API wrapping around the Deutsche Bahn API."
-LABEL org.opencontainers.image.authors="Jannis R <mail@jannisr.de>"
-LABEL org.opencontainers.image.documentation="https://github.com/derhuerst/db-rest/tree/5"
-LABEL org.opencontainers.image.source="https://github.com/derhuerst/db-rest"
-LABEL org.opencontainers.image.revision="5"
-LABEL org.opencontainers.image.licenses="ISC"
 WORKDIR /app
 
 # install dependencies
@@ -20,6 +13,13 @@ RUN npm run build
 # ---
 
 FROM node:alpine
+LABEL org.opencontainers.image.title="db-rest"
+LABEL org.opencontainers.image.description="A clean REST API wrapping around the Deutsche Bahn API."
+LABEL org.opencontainers.image.authors="Jannis R <mail@jannisr.de>"
+LABEL org.opencontainers.image.documentation="https://github.com/derhuerst/db-rest/tree/5"
+LABEL org.opencontainers.image.source="https://github.com/derhuerst/db-rest"
+LABEL org.opencontainers.image.revision="5"
+LABEL org.opencontainers.image.licenses="ISC"
 WORKDIR /app
 
 # install dependencies
