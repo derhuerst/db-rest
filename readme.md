@@ -2,7 +2,7 @@
 
 **A clean REST API wrapping around the [Deutsche Bahn HAFAS API](https://github.com/public-transport/db-hafas#db-hafas).** It is deployed at [`v5.db.transport.rest`](https://v5.db.transport.rest/).
 
-[**API Documentation**](docs/index.md)
+[**API Documentation**](docs/readme.md)
 
 ![db-rest architecture diagram](architecture.svg)
 
