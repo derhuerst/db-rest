@@ -255,8 +255,6 @@ parameter | description | type | default value
 `linesOfStops` | Parse & return lines of each stop/station? | boolean | `false`
 `remarks` | Parse & return hints & warnings? | boolean | `true`
 `language` | Language of the results. | string | `en`
-`includeRelatedStations` | Fetch departures at related stops, e.g. those that belong together on the metro map? | boolean | `true`
-`stopovers` | Fetch & parse next stopovers of each departure? | boolean | `false`
 `nationalExpress` | Include InterCityExpress (ICE)? | boolean | `true`
 `national` | Include InterCity & EuroCity (IC/EC)? | boolean | `true`
 `regionalExp` | Include RegionalExpress & InterRegio (RE/IR)? | boolean | `true`
@@ -326,8 +324,6 @@ parameter | description | type | default value
 `linesOfStops` | Parse & return lines of each stop/station? | boolean | `false`
 `remarks` | Parse & return hints & warnings? | boolean | `true`
 `language` | Language of the results. | string | `en`
-`includeRelatedStations` | Fetch departures at related stops, e.g. those that belong together on the metro map? | boolean | `true`
-`stopovers` | Fetch & parse next stopovers of each departure? | boolean | `false`
 `nationalExpress` | Include InterCityExpress (ICE)? | boolean | `true`
 `national` | Include InterCity & EuroCity (IC/EC)? | boolean | `true`
 `regionalExp` | Include RegionalExpress & InterRegio (RE/IR)? | boolean | `true`
