@@ -8,7 +8,9 @@ const withCache = require('cached-hafas-client')
 const redisStore = require('cached-hafas-client/stores/redis')
 const {join: pathJoin} = require('path')
 const serveStatic = require('serve-static')
+const {parseBoolean} = require('hafas-rest-api/lib/parse')
 const pkg = require('./package.json')
+const {loyaltyCardParser} = require('./lib/loyalty-cards')
 const stations = require('./routes/stations')
 const station = require('./routes/station')
 
@@ -41,7 +43,21 @@ if (process.env.REDIS_URL) {
 	)
 }
 
-const modifyRoutes = (routes) => {
+const mapRouteParsers = (route, parsers) => {
+	if (route !== 'journeys') return parsers
+	return {
+		...parsers,
+		loyaltyCard: loyaltyCardParser,
+		firstClass: {
+			description: 'Search for first-class options?',
+			type: 'boolean',
+			default: 'false',
+			parse: parseBoolean,
+		},
+	}
+}
+
+const modifyRoutes = (routes, hafas, config) => {
 	routes['/stations/:id'] = station
 	routes['/stations'] = stations
 	return routes
@@ -61,6 +77,7 @@ const config = {
 	etags: 'strong',
 	csp: `default-src 'none' style-src 'self' 'unsafe-inline' img-src https:`,
 	healthCheck,
+	mapRouteParsers,
 	modifyRoutes,
 }
 
