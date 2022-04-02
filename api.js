@@ -11,6 +11,7 @@ const serveStatic = require('serve-static')
 const pkg = require('./package.json')
 const stations = require('./routes/stations')
 const station = require('./routes/station')
+const journeys = require('./routes/journeys')
 
 const docsRoot = pathJoin(__dirname, 'docs')
 
@@ -41,9 +42,10 @@ if (process.env.REDIS_URL) {
 	)
 }
 
-const modifyRoutes = (routes) => {
+const modifyRoutes = (routes, hafas, config) => {
 	routes['/stations/:id'] = station
 	routes['/stations'] = stations
+	routes['/journeys'] = journeys(hafas, config)
 	return routes
 }
 
