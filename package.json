@@ -48,6 +48,6 @@
 		"build": "npm run docs",
 		"start": "node index.js",
 		"lint": "eslint .",
-		"test": "node test.js | tap-min"
+		"test": "node test/index.js | tap-min"
 	}
 }
