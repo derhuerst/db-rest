@@ -64,8 +64,8 @@ const modifyRoutes = (routes, hafas, config) => {
 }
 
 const config = {
-	hostname: process.env.HOSTNAME || 'localhost',
-	port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
+	hostname: process.env.HOSTNAME || 'localhost',
+	port: process.env.PORT ? parseInt(process.env.PORT) : 3000,
 	name: pkg.name,
 	description: pkg.description,
 	homepage: pkg.homepage,

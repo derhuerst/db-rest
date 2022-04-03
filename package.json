@@ -37,6 +37,7 @@
 	"devDependencies": {
 		"@derhuerst/technical-docs-cli": "^1.1.0",
 		"axios": "^0.26.1",
+		"eslint": "^8.12.0",
 		"get-port": "^5.1.1",
 		"pino-pretty": "^4.0.0",
 		"tap-min": "^2.0.0",
@@ -46,6 +47,7 @@
 		"docs": "node api-docs.js >docs/api.md && build-technical-doc --syntax-stylesheet-url /syntax.css <docs/readme.md >docs/index.html && build-technical-doc --syntax-stylesheet-url /syntax.css <docs/getting-started.md >docs/getting-started.html && build-technical-doc --syntax-stylesheet-url /syntax.css <docs/api.md >docs/api.html && build-technical-doc --syntax-stylesheet github >docs/syntax.css",
 		"build": "npm run docs",
 		"start": "node index.js",
+		"lint": "eslint .",
 		"test": "node test.js | tap-min"
 	}
 }
