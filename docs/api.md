@@ -381,7 +381,7 @@ parameter | description | type | default value
 `remarks` | Parse & return hints & warnings? | boolean | `true`
 `scheduledDays` | Parse & return dates each journey is valid on? | boolean | `false`
 `language` | Language of the results. | string | `en`
-`loyaltyCard` | Type of loyalty card in use. See https://github.com/public-transport/hafas-client/blob/68ecd7c5e976dd2f51c5c64a81600e7e181a8996/p/db/loyalty-cards.js#L6-L11. | string | *none*
+`loyaltyCard` | Type of loyalty card in use. | string | *none*
 `firstClass` | Search for first-class options? | boolean | `false`
 `nationalExpress` | Include InterCityExpress (ICE)? | boolean | `true`
 `national` | Include InterCity & EuroCity (IC/EC)? | boolean | `true`
