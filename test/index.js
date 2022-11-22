@@ -1,8 +1,10 @@
 'use strict'
 
 const tape = require('tape')
+const {parse: ndjsonParser} = require('ndjson')
 const {loyaltyCards} = require('../lib/loyalty-cards')
 const {fetchWithTestApi} = require('./util')
+const pAllStations = require('../lib/db-stations')
 
 const NO_JOURNEYS = {
 	// todo?
@@ -41,41 +43,69 @@ tape.test('/journeys?loyaltyCard works', async (t) => {
 })
 
 tape.test('/stations works', async (t) => {
+	const {data: allStations} = await pAllStations
+	const someStationId = Object.keys(allStations)[0]
+
 	{
-		const {headers} = await fetchWithTestApi({}, {}, '/stations', {
+		const {headers, data} = await fetchWithTestApi({}, {}, '/stations', {
 			headers: {
 				'accept': 'application/json',
 			},
 		})
 		t.equal(headers['content-type'], 'application/json')
+		t.equal(typeof data, 'object')
+		t.ok(data)
+		t.ok(data[someStationId])
+		t.equal(Object.keys(data).length, Object.keys(allStations).length)
 	}
 
 	{
-		const {headers} = await fetchWithTestApi({}, {}, '/stations', {
+		const {headers, data} = await fetchWithTestApi({}, {}, '/stations', {
 			headers: {
 				'accept': 'application/x-ndjson',
 			},
 		})
 		t.equal(headers['content-type'], 'application/x-ndjson')
+
+		let nrOfStations = 0
+		const parser = ndjsonParser()
+		parser.end(data)
+		for await (const station of parser) nrOfStations++
+
+		t.equal(nrOfStations, Object.keys(allStations).length)
 	}
 })
 
 tape.test('/stations?query=frankf works', async (t) => {
+	const FRANKFURT_MAIN_HBF = '8000105'
+
 	{
-		const {headers} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
+		const {headers, data} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
 			headers: {
 				'accept': 'application/json',
 			},
 		})
 		t.equal(headers['content-type'], 'application/json')
+		t.equal(typeof data, 'object')
+		t.ok(data)
+		t.ok(data[FRANKFURT_MAIN_HBF])
+		t.ok(Object.keys(data).length > 0)
 	}
 
 	{
-		const {headers} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
+		const {headers, data} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
 			headers: {
 				'accept': 'application/x-ndjson',
 			},
 		})
 		t.equal(headers['content-type'], 'application/x-ndjson')
+
+		const stations = []
+		const parser = ndjsonParser()
+		parser.end(data)
+		for await (const station of parser) stations.push(station)
+
+		t.ok(stations.find(s => s.id === FRANKFURT_MAIN_HBF))
+		t.ok(Object.keys(stations).length > 0)
 	}
 })
