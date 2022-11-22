@@ -49,7 +49,6 @@ const complete = (req, res, next, q, allStations, onStation, onEnd) => {
 	const completion = parse(q.completion) !== false
 	const results = autocomplete(q.query, limit, fuzzy, completion)
 
-	const data = []
 	for (const result of results) {
 		const station = allStations[result.id]
 		if (!station) continue
@@ -96,7 +95,7 @@ const stationsRoute = (req, res, next) => {
 	pAllStations
 	.then(({stations, timeModified, asJson, asNdjson}) => {
 		res.setHeader('Last-Modified', timeModified.toUTCString())
-		if (Object.keys(req.query).length === 0) {
+		if (Object.keys(q).length === 0) {
 			const data = t === JSON_MIME ? asJson.data : asNdjson.data
 			const etag = t === JSON_MIME ? asJson.etag : asNdjson.etag
 			serveBuffer(req, res, data, {timeModified, etag})
@@ -151,12 +150,12 @@ Instead of receiving a JSON response, you can request [newline-delimited JSON](h
 			}],
 			responses: {
 				'2XX': {
-					description: 'An array of stops/stations, in the [`db-stations@3` format](https://github.com/derhuerst/db-stations/blob/3.0.1/readme.md).',
+					description: 'An object of stops/stations in the [`db-stations@3` format](https://github.com/derhuerst/db-stations/blob/3.0.1/readme.md), with their IDs as the keys.',
 					content: {
 						'application/json': {
 							schema: {
-								type: 'array',
-								items: {type: 'object'}, // todo
+								// todo
+								type: 'object',
 							},
 							// todo: example(s)
 						},
