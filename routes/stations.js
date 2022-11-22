@@ -114,13 +114,13 @@ stationsRoute.openapiPaths = {
 		get: {
 			summary: 'Autocompletes stops/stations by name or filters stops/stations.',
 			description: `\
-If the \`query\` parameter is used, it will use [\`db-stations-autocomplete\`](https://npmjs.com/package/db-stations-autocomplete) to autocomplete *Deutsche Bahn*-operated stops/stations by name. Otherwise, it will filter the stops/stations in [\`db-stations\`](https://npmjs.com/package/db-stations).
+If the \`query\` parameter is used, it will use [\`db-stations-autocomplete@2\`](https://github.com/derhuerst/db-stations-autocomplete/tree/2.2.0) to autocomplete *Deutsche Bahn*-operated stops/stations by name. Otherwise, it will filter the stops/stations in [\`db-stations@3\`](https://github.com/derhuerst/db-stations/tree/3.0.1).
 
 Instead of receiving a JSON response, you can request [newline-delimited JSON](http://ndjson.org) by sending \`Accept: application/x-ndjson\`.`,
 			parameters: [{
 				name: 'query',
 				in: 'query',
-				description: 'Find stations by name using [`db-stations-autocomplete`](https://npmjs.com/package/db-stations-autocomplete).',
+				description: 'Find stations by name using [`db-stations-autocomplete@2`](https://github.com/derhuerst/db-stations-autocomplete/tree/2.2.0).',
 				schema: {
 					type: 'string',
 				},
@@ -151,7 +151,7 @@ Instead of receiving a JSON response, you can request [newline-delimited JSON](h
 			}],
 			responses: {
 				'2XX': {
-					description: 'An array of stops/stations, in the [`db-stations` format](https://github.com/derhuerst/db-stations/blob/master/readme.md).',
+					description: 'An array of stops/stations, in the [`db-stations@3` format](https://github.com/derhuerst/db-stations/blob/3.0.1/readme.md).',
 					content: {
 						'application/json': {
 							schema: {
@@ -169,7 +169,7 @@ Instead of receiving a JSON response, you can request [newline-delimited JSON](h
 
 stationsRoute.queryParameters = {
 	query: {
-		description: 'Find stations by name using [`db-stations-autocomplete`](https://npmjs.com/package/db-stations-autocomplete).',
+		description: 'Find stations by name using [`db-stations-autocomplete@2`](https://github.com/derhuerst/db-stations-autocomplete/tree/2.2.0).',
 		type: 'string',
 		defaultStr: '–',
 	},

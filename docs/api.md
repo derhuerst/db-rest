@@ -466,7 +466,7 @@ curl "https://v5.db.transport.rest/trips/$(echo $trip_id | url-encode)" -s | jq
 
 ## `GET /stations`
 
-If the `query` parameter is used, it will use [`db-stations-autocomplete`](https://npmjs.com/package/db-stations-autocomplete) to autocomplete *Deutsche Bahn*-operated stops/stations. Otherwise, it will filter the stops/stations in [`db-stations`](https://npmjs.com/package/db-stations).
+If the `query` parameter is used, it will use [`db-stations-autocomplete@2`](https://github.com/derhuerst/db-stations-autocomplete/tree/2.2.0) to autocomplete *Deutsche Bahn*-operated stops/stations. Otherwise, it will filter the stops/stations in [`db-stations@3`](https://github.com/derhuerst/db-stations/tree/3.0.1).
 
 Instead of receiving a JSON response, you can request [newline-delimited JSON](http://ndjson.org) by sending `Accept: application/x-ndjson`.
 
@@ -474,7 +474,7 @@ Instead of receiving a JSON response, you can request [newline-delimited JSON](h
 
 parameter | description | type | default value
 ----------|-------------|------|--------------
-`query` | Find stations by name using [`db-stations-autocomplete`](https://npmjs.com/package/db-stations-autocomplete). | string | –
+`query` | Find stations by name using [`db-stations-autocomplete@2`](https://github.com/derhuerst/db-stations-autocomplete/tree/2.2.0). | string | –
 `limit` | *If `query` is used:* Return at most `n` stations. | number | `3`
 `fuzzy` | *If `query` is used:* Find stations despite typos. | boolean | `false`
 `completion` | *If `query` is used:* Autocomplete stations. | boolean | `true`

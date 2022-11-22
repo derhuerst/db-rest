@@ -30,7 +30,7 @@ stationRoute.openapiPaths = {
 		get: {
 			summary: 'Returns a stop/station from `db-stations`.',
 			description: `\
-Returns a stop/station from [\`db-stations\`](https://npmjs.com/package/db-stations).`,
+Returns a stop/station from [\`db-stations@3\`](https://github.com/derhuerst/db-stations/tree/3.0.1).`,
 			parameters: [{
 				name: 'id',
 				in: 'path',
@@ -42,7 +42,7 @@ Returns a stop/station from [\`db-stations\`](https://npmjs.com/package/db-stati
 			}],
 			responses: {
 				'2XX': {
-					description: 'A stop/station, in the [`db-stations` format](https://github.com/derhuerst/db-stations/blob/master/readme.md).',
+					description: 'A stop/station, in the [`db-stations@3` format](https://github.com/derhuerst/db-stations/blob/3.0.1/readme.md).',
 					content: {
 						'application/json': {
 							schema: {

@@ -50,7 +50,7 @@ Uses [\`hafasClient.departures()\`](https://github.com/public-transport/hafas-cl
 Works like [\`/stops/:id/departures\`](#get-stopsiddepartures), except that it uses [\`hafasClient.arrivals()\`](https://github.com/public-transport/hafas-client/blob/5/docs/arrivals.md) to **arrivals at a stop/station**.
 `,
 	'/stations': `\
-If the \`query\` parameter is used, it will use [\`db-stations-autocomplete\`](https://npmjs.com/package/db-stations-autocomplete) to autocomplete *Deutsche Bahn*-operated stops/stations. Otherwise, it will filter the stops/stations in [\`db-stations\`](https://npmjs.com/package/db-stations).
+If the \`query\` parameter is used, it will use [\`db-stations-autocomplete@2\`](https://github.com/derhuerst/db-stations-autocomplete/tree/2.2.0) to autocomplete *Deutsche Bahn*-operated stops/stations. Otherwise, it will filter the stops/stations in [\`db-stations@3\`](https://github.com/derhuerst/db-stations/tree/3.0.1).
 
 Instead of receiving a JSON response, you can request [newline-delimited JSON](http://ndjson.org) by sending \`Accept: application/x-ndjson\`.
 `,
