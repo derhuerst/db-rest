@@ -10,6 +10,8 @@ let pAllStations = require('../lib/db-stations')
 const JSON_MIME = 'application/json'
 const NDJSON_MIME = 'application/x-ndjson'
 
+// todo: DRY with vbb-rest/routes/stations.js?
+
 const toNdjsonBuf = (data) => {
 	const chunks = []
 	let i = 0, bytes = 0
