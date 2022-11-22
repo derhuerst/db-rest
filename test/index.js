@@ -39,3 +39,43 @@ tape.test('/journeys?loyaltyCard works', async (t) => {
 		}
 	}, {}, '/journeys?from=123&to=234&loyaltyCard=bahncard-2nd-50')
 })
+
+tape.test('/stations works', async (t) => {
+	{
+		const {headers} = await fetchWithTestApi({}, {}, '/stations', {
+			headers: {
+				'accept': 'application/json',
+			},
+		})
+		t.equal(headers['content-type'], 'application/json')
+	}
+
+	{
+		const {headers} = await fetchWithTestApi({}, {}, '/stations', {
+			headers: {
+				'accept': 'application/x-ndjson',
+			},
+		})
+		t.equal(headers['content-type'], 'application/x-ndjson')
+	}
+})
+
+tape.test('/stations?query=frankf works', async (t) => {
+	{
+		const {headers} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
+			headers: {
+				'accept': 'application/json',
+			},
+		})
+		t.equal(headers['content-type'], 'application/json')
+	}
+
+	{
+		const {headers} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
+			headers: {
+				'accept': 'application/x-ndjson',
+			},
+		})
+		t.equal(headers['content-type'], 'application/x-ndjson')
+	}
+})
