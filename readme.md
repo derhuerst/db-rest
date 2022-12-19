@@ -1,12 +1,12 @@
 # db-rest
 
-**A clean REST API wrapping around the [Deutsche Bahn HAFAS API](https://github.com/public-transport/db-hafas#db-hafas).** It is deployed at [`v5.db.transport.rest`](https://v5.db.transport.rest/).
+**A clean REST API wrapping around the [Deutsche Bahn HAFAS API](https://github.com/public-transport/db-hafas#db-hafas).** It is deployed at [`v6.db.transport.rest`](https://v6.db.transport.rest/).
 
 [**API Documentation**](docs/readme.md)
 
 ![db-rest architecture diagram](architecture.svg)
 
-[![API status](https://badgen.net/uptime-robot/status/m784879516-8a977fa91b975fc3884a9857)](https://stats.uptimerobot.com/57wNLs39M/784879516)
+[![API status](https://badgen.net/uptime-robot/status/m793274556-25c5e9bbab0297d91cda7134)](https://stats.uptimerobot.com/57wNLs39M/793274556)
 [![dependency status](https://img.shields.io/david/derhuerst/db-rest.svg)](https://david-dm.org/derhuerst/db-rest)
 ![ISC-licensed](https://img.shields.io/github/license/derhuerst/db-rest.svg)
 [![support me via GitHub Sponsors](https://img.shields.io/badge/support%20me-donate-fa7664.svg)](https://github.com/sponsors/derhuerst)
@@ -19,10 +19,10 @@
 
 ### via Docker
 
-A Docker image [is available as `derhuerst/db-rest:5`](https://hub.docker.com/r/derhuerst/db-rest:5).
+A Docker image [is available as `derhuerst/db-rest:6`](https://hub.docker.com/r/derhuerst/db-rest:6).
 
 ```shell
-docker run -d -p 3000:3000 derhuerst/db-rest:5
+docker run -d -p 3000:3000 derhuerst/db-rest:6
 ```
 
 *Note:* The Docker image does not contain the Redis server.
@@ -32,7 +32,7 @@ docker run -d -p 3000:3000 derhuerst/db-rest:5
 ```shell
 git clone https://github.com/derhuerst/db-rest.git
 cd db-rest
-git checkout 5
+git checkout 6
 npm install --production
 
 redis-server &

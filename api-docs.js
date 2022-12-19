@@ -4,13 +4,13 @@ const generateApiDocs = require('hafas-rest-api/tools/generate-docs')
 const {api} = require('./api')
 
 const HEAD = `\
-# \`v5.db.transport.rest\` API documentation
+# \`v6.db.transport.rest\` API documentation
 
-[\`v5.db.transport.rest\`](https://v5.db.transport.rest/) is a [REST API](https://restfulapi.net). Data is being returned as [JSON](https://www.json.org/).
+[\`v6.db.transport.rest\`](https://v6.db.transport.rest/) is a [REST API](https://restfulapi.net). Data is being returned as [JSON](https://www.json.org/).
 
 You can just use the API without authentication. There's a [rate limit](https://apisyouwonthate.com/blog/what-is-api-rate-limiting-all-about) of 100 request/minute (burst 200 requests/minute) set up.
 
-[OpenAPI playground](https://petstore.swagger.io/?url=https%3A%2F%2Fv5.db.transport.rest%2F.well-known%2Fservice-desc%0A)
+[OpenAPI playground](https://petstore.swagger.io/?url=https%3A%2F%2Fv6.db.transport.rest%2F.well-known%2Fservice-desc%0A)
 
 *Note:* The examples snippets in this documentation uses the \`url-encode\` CLI tool of the [\`url-decode-encode-cli\` package](https://www.npmjs.com/package/url-decode-encode-cli) for [URL-encoding](https://de.wikipedia.org/wiki/URL-Encoding).
 `
@@ -92,7 +92,7 @@ const examples = {
 ### Example
 
 \`\`\`shell
-curl 'https://v5.db.transport.rest/locations?query=halle&results=1' -s | jq
+curl 'https://v6.db.transport.rest/locations?query=halle&results=1' -s | jq
 \`\`\`
 
 \`\`\`js
@@ -120,7 +120,7 @@ curl 'https://v5.db.transport.rest/locations?query=halle&results=1' -s | jq
 ### Example
 
 \`\`\`shell
-curl 'https://v5.db.transport.rest/stops/nearby?latitude=53.5711&longitude=10.0015' -s | jq
+curl 'https://v6.db.transport.rest/stops/nearby?latitude=53.5711&longitude=10.0015' -s | jq
 \`\`\`
 
 \`\`\`js
@@ -160,7 +160,7 @@ curl 'https://v5.db.transport.rest/stops/nearby?latitude=53.5711&longitude=10.00
 ### Example
 
 \`\`\`shell
-curl 'https://v5.db.transport.rest/stops/reachable-from?latitude=53.553766&longitude=9.977514&address=Hamburg,+Holstenwall+9' -s | jq
+curl 'https://v6.db.transport.rest/stops/reachable-from?latitude=53.553766&longitude=9.977514&address=Hamburg,+Holstenwall+9' -s | jq
 \`\`\`
 
 \`\`\`js
@@ -200,7 +200,7 @@ curl 'https://v5.db.transport.rest/stops/reachable-from?latitude=53.553766&longi
 ### Example
 
 \`\`\`shell
-curl 'https://v5.db.transport.rest/stops/8010159' -s | jq
+curl 'https://v6.db.transport.rest/stops/8010159' -s | jq
 \`\`\`
 
 \`\`\`js
@@ -229,7 +229,7 @@ curl 'https://v5.db.transport.rest/stops/8010159' -s | jq
 
 \`\`\`shell
 # autocomplete using db-stations-autocomplete
-curl 'https://v5.db.transport.rest/stations?query=dammt' -s | jq
+curl 'https://v6.db.transport.rest/stations?query=dammt' -s | jq
 \`\`\`
 
 \`\`\`js
@@ -265,7 +265,7 @@ curl 'https://v5.db.transport.rest/stations?query=dammt' -s | jq
 
 \`\`\`shell
 # filter db-stations by \`hasParking\` property
-curl 'https://v5.db.transport.rest/stations?hasParking=true' -s | jq
+curl 'https://v6.db.transport.rest/stations?hasParking=true' -s | jq
 \`\`\`
 
 \`\`\`js
@@ -287,7 +287,7 @@ curl 'https://v5.db.transport.rest/stations?hasParking=true' -s | jq
 
 \`\`\`shell
 # filter db-stations by \`hasDBLounge\` property, get newline-delimited JSON
-curl 'https://v5.db.transport.rest/stations?hasDBLounge=true' -H 'accept: application/x-ndjson' -s | jq
+curl 'https://v6.db.transport.rest/stations?hasDBLounge=true' -H 'accept: application/x-ndjson' -s | jq
 \`\`\`
 `,
 	'/stations/:id': `\
@@ -295,9 +295,9 @@ curl 'https://v5.db.transport.rest/stations?hasDBLounge=true' -H 'accept: applic
 
 \`\`\`shell
 # lookup Halle (Saale) Hbf
-curl 'https://v5.db.transport.rest/stations/8010159' -s | jq
-curl 'https://v5.db.transport.rest/stations/LH' -s | jq # RIL100/DS100
-curl 'https://v5.db.transport.rest/stations/LHG' -s | jq # RIL100/DS100
+curl 'https://v6.db.transport.rest/stations/8010159' -s | jq
+curl 'https://v6.db.transport.rest/stations/LH' -s | jq # RIL100/DS100
+curl 'https://v6.db.transport.rest/stations/LHG' -s | jq # RIL100/DS100
 \`\`\`
 
 \`\`\`js
@@ -328,7 +328,7 @@ curl 'https://v5.db.transport.rest/stations/LHG' -s | jq # RIL100/DS100
 
 \`\`\`shell
 # at Halle (Saale) Hbf, in direction Berlin Südkreuz
-curl 'https://v5.db.transport.rest/stops/8010159/departures?direction=8011113&duration=120' -s | jq
+curl 'https://v6.db.transport.rest/stops/8010159/departures?direction=8011113&duration=120' -s | jq
 \`\`\`
 
 \`\`\`js
@@ -370,7 +370,7 @@ curl 'https://v5.db.transport.rest/stops/8010159/departures?direction=8011113&du
 
 \`\`\`shell
 # at Halle (Saale) Hbf, 10 minutes
-curl 'https://v5.db.transport.rest/stops/8010159/arrivals?duration=10' -s | jq
+curl 'https://v6.db.transport.rest/stops/8010159/arrivals?duration=10' -s | jq
 \`\`\`
 `,
 	'/journeys': `\
@@ -378,9 +378,9 @@ curl 'https://v5.db.transport.rest/stops/8010159/arrivals?duration=10' -s | jq
 
 \`\`\`shell
 # stop/station to POI
-curl 'https://v5.db.transport.rest/journeys?from=8010159&to.id=991561765&to.latitude=51.483641&to.longitude=11.980841' -s | jq
+curl 'https://v6.db.transport.rest/journeys?from=8010159&to.id=991561765&to.latitude=51.483641&to.longitude=11.980841' -s | jq
 # without buses, with ticket info
-curl 'https://v5.db.transport.rest/journeys?from=…&to=…&bus=false&tickets=true' -s | jq
+curl 'https://v6.db.transport.rest/journeys?from=…&to=…&bus=false&tickets=true' -s | jq
 \`\`\`
 `,
 	'/journeys/:ref': `\
@@ -388,11 +388,11 @@ curl 'https://v5.db.transport.rest/journeys?from=…&to=…&bus=false&tickets=tr
 
 \`\`\`shell
 # get the refreshToken of a journey
-journey=$(curl 'https://v5.db.transport.rest/journeys?from=…&to=…&results=1' -s | jq '.journeys[0]')
+journey=$(curl 'https://v6.db.transport.rest/journeys?from=…&to=…&results=1' -s | jq '.journeys[0]')
 refresh_token=$(echo $journey | jq -r '.refreshToken')
 
 # refresh the journey
-curl "https://v5.db.transport.rest/journeys/$(echo $refresh_token | url-encode)" -s | jq
+curl "https://v6.db.transport.rest/journeys/$(echo $refresh_token | url-encode)" -s | jq
 \`\`\`
 `,
 	'/trips/:id': `\
@@ -400,12 +400,12 @@ curl "https://v5.db.transport.rest/journeys/$(echo $refresh_token | url-encode)"
 
 \`\`\`shell
 # get the trip ID of a journey leg
-journey=$(curl 'https://v5.db.transport.rest/journeys?from=…&to=…&results=1' -s | jq '.journeys[0]')
+journey=$(curl 'https://v6.db.transport.rest/journeys?from=…&to=…&results=1' -s | jq '.journeys[0]')
 journey_leg=$(echo $journey | jq -r '.legs[0]')
 trip_id=$(echo $journey_leg | jq -r '.tripId')
 
 # fetch the trip
-curl "https://v5.db.transport.rest/trips/$(echo $trip_id | url-encode)" -s | jq
+curl "https://v6.db.transport.rest/trips/$(echo $trip_id | url-encode)" -s | jq
 \`\`\`
 `,
 	'/radar': `\
@@ -413,7 +413,7 @@ curl "https://v5.db.transport.rest/trips/$(echo $trip_id | url-encode)" -s | jq
 
 \`\`\`shell
 bbox='north=53.555&west=9.989&south=53.55&east=10.001'
-curl "https://v5.db.transport.rest/radar?$bbox&results=10" -s | jq
+curl "https://v6.db.transport.rest/radar?$bbox&results=10" -s | jq
 \`\`\`
 `,
 }

@@ -1,6 +1,6 @@
-# `v5.db.transport.rest` documentation
+# `v6.db.transport.rest` documentation
 
-[`v5.db.transport.rest`](https://v5.db.transport.rest/) is a [REST API](https://restfulapi.net) for the public transportation system in Germany.
+[`v6.db.transport.rest`](https://v6.db.transport.rest/) is a [REST API](https://restfulapi.net) for the public transportation system in Germany.
 
 [![API status](https://badgen.net/uptime-robot/status/m784879516-8a977fa91b975fc3884a9857)](https://stats.uptimerobot.com/57wNLs39M/784879516)
 
@@ -8,7 +8,7 @@ Because it wraps [an API](https://github.com/public-transport/hafas-client/blob/
 
 - [Getting Started](getting-started.md)
 - [API documentation](api.md)
-- [OpenAPI playground](https://petstore.swagger.io/?url=https%3A%2F%2Fv5.db.transport.rest%2F.well-known%2Fservice-desc%0A)
+- [OpenAPI playground](https://petstore.swagger.io/?url=https%3A%2F%2Fv6.db.transport.rest%2F.well-known%2Fservice-desc%0A)
 
 ## Why use this API?
 

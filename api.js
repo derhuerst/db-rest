@@ -70,7 +70,7 @@ const config = {
 	description: pkg.description,
 	homepage: pkg.homepage,
 	version: pkg.version,
-	docsLink: 'https://github.com/derhuerst/db-rest/blob/5/docs/readme.md',
+	docsLink: 'https://github.com/derhuerst/db-rest/blob/6/docs/readme.md',
 	openapiSpec: true,
 	logging: true,
 	aboutPage: false,

@@ -2,7 +2,7 @@ name: build & publish Docker image
 on:
   push:
     branches:
-      - 5
+      - 6
 jobs:
   lint-test:
     name: lint & test
@@ -35,7 +35,7 @@ jobs:
         with:
           push: true
           tags: |
-            derhuerst/db-rest:5
+            derhuerst/db-rest:6
             derhuerst/db-rest:latest
 
       # this is for the public-transport/infrastructure cluster
@@ -55,4 +55,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{github.repository}}:v5_${{steps.hash.outputs.hash}}_${{steps.datetime.outputs.datetime}}
+          tags: ghcr.io/${{github.repository}}:v6_${{steps.hash.outputs.hash}}_${{steps.datetime.outputs.datetime}}
