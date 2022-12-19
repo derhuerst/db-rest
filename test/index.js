@@ -1,10 +1,9 @@
-'use strict'
-
-const tape = require('tape')
-const {parse: ndjsonParser} = require('ndjson')
-const {loyaltyCards} = require('../lib/loyalty-cards')
-const {fetchWithTestApi} = require('./util')
-const pAllStations = require('../lib/db-stations')
+import tape from 'tape'
+import _ndjson from 'ndjson'
+const {parse: ndjsonParser} = _ndjson
+import {loyaltyCards} from '../lib/loyalty-cards.js'
+import {fetchWithTestApi} from './util.js'
+import {pStations as pAllStations} from '../lib/db-stations.js'
 
 const NO_JOURNEYS = {
 	// todo?

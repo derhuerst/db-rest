@@ -1,12 +1,9 @@
-'use strict'
-
-const createApi = require('hafas-rest-api')
-const getPort = require('get-port')
-const {createServer} = require('http')
-const {promisify} = require('util')
-const axios = require('axios')
-const pkg = require('../package.json')
-const {config, hafas: unmockedHafas} = require('../api')
+import createApi from 'hafas-rest-api'
+import getPort from 'get-port'
+import {createServer} from 'node:http'
+import {promisify} from 'node:util'
+import axios from 'axios'
+import {config, hafas as unmockedHafas} from '../api.js'
 
 // adapted from https://github.com/public-transport/hafas-rest-api/blob/60335eacd8332d7f448da875a7498dd97934e360/test/util.js#L40-L77
 const createTestApi = async (mocks, cfg) => {
@@ -50,7 +47,7 @@ const fetchWithTestApi = async (mocks, cfg, path, opt = {}) => {
 	return res
 }
 
-module.exports = {
+export {
 	createTestApi,
 	fetchWithTestApi,
 }

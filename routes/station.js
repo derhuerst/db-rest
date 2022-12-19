@@ -1,6 +1,4 @@
-'use strict'
-
-const pStations = require('../lib/db-stations')
+import {pStations} from '../lib/db-stations.js'
 
 const err404 = (msg) => {
 	const err = new Error(msg)
@@ -58,4 +56,6 @@ Returns a stop/station from [\`db-stations@3\`](https://github.com/derhuerst/db-
 	},
 }
 
-module.exports = stationRoute
+export {
+	stationRoute as route,
+}

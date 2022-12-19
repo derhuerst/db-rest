@@ -3,6 +3,7 @@
 	"name": "db-rest",
 	"description": "A clean REST API wrapping around the Deutsche Bahn API.",
 	"version": "5.0.2",
+	"type": "module",
 	"main": "index.js",
 	"author": "Jannis R <mail@jannisr.de>",
 	"homepage": "https://github.com/derhuerst/db-rest/tree/6",

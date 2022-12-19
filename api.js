@@ -1,19 +1,25 @@
-'use strict'
+// todo: use import assertions once they're supported by Node.js & ESLint
+// https://github.com/tc39/proposal-import-assertions
+import {createRequire} from 'node:module'
+const require = createRequire(import.meta.url)
 
-const createHafas = require('db-hafas')
-const createApi = require('hafas-rest-api')
-const createHealthCheck = require('hafas-client-health-check')
-const Redis = require('ioredis')
-const withCache = require('cached-hafas-client')
-const redisStore = require('cached-hafas-client/stores/redis')
-const {join: pathJoin} = require('path')
-const serveStatic = require('serve-static')
-const {parseBoolean} = require('hafas-rest-api/lib/parse')
+import {dirname, join as pathJoin} from 'node:path'
+import {fileURLToPath} from 'node:url'
+import createHafas from 'db-hafas'
+import createApi from 'hafas-rest-api'
+import createHealthCheck from 'hafas-client-health-check'
+import Redis from 'ioredis'
+import withCache from 'cached-hafas-client'
+import redisStore from 'cached-hafas-client/stores/redis.js'
+import serveStatic from 'serve-static'
+import {parseBoolean} from 'hafas-rest-api/lib/parse.js'
+import {loyaltyCardParser} from './lib/loyalty-cards.js'
+import {route as stations} from './routes/stations.js'
+import {route as station} from './routes/station.js'
+
 const pkg = require('./package.json')
-const {loyaltyCardParser} = require('./lib/loyalty-cards')
-const stations = require('./routes/stations')
-const station = require('./routes/station')
 
+const __dirname = dirname(fileURLToPath(import.meta.url))
 const docsRoot = pathJoin(__dirname, 'docs')
 
 const berlinHbf = '8011160'
@@ -87,7 +93,7 @@ const api = createApi(hafas, config, (api) => {
 	}))
 })
 
-module.exports = {
+export {
 	hafas,
 	config,
 	api,

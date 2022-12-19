@@ -1,11 +1,10 @@
-'use strict'
-
-const computeEtag = require('etag')
-const serveBuffer = require('serve-buffer')
-const autocomplete = require('db-stations-autocomplete')
-const parse = require('cli-native').to
-const createFilter = require('db-stations/create-filter')
-let pAllStations = require('../lib/db-stations')
+import computeEtag from 'etag'
+import serveBuffer from 'serve-buffer'
+import autocomplete from 'db-stations-autocomplete'
+import _cliNative from 'cli-native'
+const {to: parse} = _cliNative
+import createFilter from 'db-stations/create-filter.js'
+import {pStations} from '../lib/db-stations.js'
 
 const JSON_MIME = 'application/json'
 const NDJSON_MIME = 'application/x-ndjson'
@@ -24,7 +23,7 @@ const toNdjsonBuf = (data) => {
 	return Buffer.concat(chunks, bytes)
 }
 
-pAllStations = pAllStations.then(({data, timeModified}) => {
+const pAllStations = pStations.then(({data, timeModified}) => {
 	const asJson = Buffer.from(JSON.stringify(data), 'utf8')
 	const asNdjson = toNdjsonBuf(data)
 	return {
@@ -202,4 +201,6 @@ stationsRoute.queryParameters = {
 	},
 }
 
-module.exports = stationsRoute
+export {
+	stationsRoute as route,
+}
