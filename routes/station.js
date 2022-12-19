@@ -52,6 +52,7 @@ Returns a stop/station from [\`db-stations@3\`](https://github.com/derhuerst/db-
 						},
 					},
 				},
+				// todo: non-2xx response
 			},
 		},
 	},

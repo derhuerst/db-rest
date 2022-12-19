@@ -166,8 +166,14 @@ Instead of receiving a JSON response, you can request [newline-delimited JSON](h
 							},
 							// todo: example(s)
 						},
+						'application/x-ndjson': {
+							schema: {
+								type: 'string',
+							},
+						},
 					},
 				},
+				// todo: non-2xx response
 			},
 		},
 	},
