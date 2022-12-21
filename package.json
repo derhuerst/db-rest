@@ -2,7 +2,7 @@
 	"private": true,
 	"name": "db-rest",
 	"description": "A clean REST API wrapping around the Deutsche Bahn API.",
-	"version": "5.0.2",
+	"version": "6.0.0",
 	"type": "module",
 	"main": "index.js",
 	"author": "Jannis R <mail@jannisr.de>",

@@ -33,7 +33,8 @@ docker run -d -p 3000:3000 derhuerst/db-rest:6
 git clone https://github.com/derhuerst/db-rest.git
 cd db-rest
 git checkout 6
-npm install --production
+npm install
+npm run build
 
 redis-server &
 npm start
