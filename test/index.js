@@ -75,11 +75,11 @@ tape.test('/stations works', async (t) => {
 	}
 })
 
-tape.test('/stations?query=frankf works', async (t) => {
+tape.test('/stations?query=frankfurt%20ha works', async (t) => {
 	const FRANKFURT_MAIN_HBF = '8000105'
 
 	{
-		const {headers, data} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
+		const {headers, data} = await fetchWithTestApi({}, {}, '/stations?query=frankfurt%20ha', {
 			headers: {
 				'accept': 'application/json',
 			},
@@ -92,7 +92,7 @@ tape.test('/stations?query=frankf works', async (t) => {
 	}
 
 	{
-		const {headers, data} = await fetchWithTestApi({}, {}, '/stations?query=frankf', {
+		const {headers, data} = await fetchWithTestApi({}, {}, '/stations?query=frankfurt%20ha', {
 			headers: {
 				'accept': 'application/x-ndjson',
 			},

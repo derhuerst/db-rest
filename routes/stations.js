@@ -1,9 +1,9 @@
 import computeEtag from 'etag'
 import serveBuffer from 'serve-buffer'
-import autocomplete from 'db-stations-autocomplete'
+import {autocomplete} from 'db-stations-autocomplete'
 import _cliNative from 'cli-native'
 const {to: parse} = _cliNative
-import createFilter from 'db-stations/create-filter.js'
+import {createFilter} from 'db-stations/create-filter.js'
 import {pStations} from '../lib/db-stations.js'
 
 const JSON_MIME = 'application/json'
