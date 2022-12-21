@@ -32,16 +32,16 @@
 		"hafas-client-health-check": "^2.1.1",
 		"hafas-rest-api": "^5.1.0",
 		"ioredis": "^5.0.6",
-		"serve-buffer": "^2.0.0",
+		"serve-buffer": "^3.0.3",
 		"serve-static": "^1.14.1"
 	},
 	"devDependencies": {
 		"@derhuerst/technical-docs-cli": "^1.1.0",
-		"axios": "^0.26.1",
+		"axios": "~1.1",
 		"eslint": "^8.12.0",
-		"get-port": "^5.1.1",
+		"get-port": "^6.1.2",
 		"ndjson": "^2.0.0",
-		"pino-pretty": "^4.0.0",
+		"pino-pretty": "^9.1.1",
 		"tap-min": "^2.0.0",
 		"tape": "^5.5.2"
 	},
