@@ -1,4 +1,4 @@
-import generateApiDocs from 'hafas-rest-api/tools/generate-docs.js'
+import {generateApiDocs} from 'hafas-rest-api/tools/generate-docs.js'
 import {api} from './api.js'
 
 const HEAD = `\
@@ -30,22 +30,22 @@ const order = [
 
 const descriptions = {
 	'/locations': `\
-Uses [\`hafasClient.locations()\`](https://github.com/public-transport/hafas-client/blob/5/docs/locations.md) to **find stops/stations, POIs and addresses matching \`query\`**.
+Uses [\`hafasClient.locations()\`](https://github.com/public-transport/hafas-client/blob/6/docs/locations.md) to **find stops/stations, POIs and addresses matching \`query\`**.
 `,
 	'/stops/nearby': `\
-Uses [\`hafasClient.nearby()\`](https://github.com/public-transport/hafas-client/blob/5/docs/nearby.md) to **find stops/stations close to the given geolocation**.
+Uses [\`hafasClient.nearby()\`](https://github.com/public-transport/hafas-client/blob/6/docs/nearby.md) to **find stops/stations close to the given geolocation**.
 `,
 	'/stops/reachable-from': `\
-Uses [\`hafasClient.reachableFrom()\`](https://github.com/public-transport/hafas-client/blob/5/docs/reachable-from.md) to **find stops/stations reachable within a certain time from an address**.
+Uses [\`hafasClient.reachableFrom()\`](https://github.com/public-transport/hafas-client/blob/6/docs/reachable-from.md) to **find stops/stations reachable within a certain time from an address**.
 `,
 	'/stops/:id': `\
-Uses [\`hafasClient.stop()\`](https://github.com/public-transport/hafas-client/blob/5/docs/stop.md) to **find a stop/station by ID**.
+Uses [\`hafasClient.stop()\`](https://github.com/public-transport/hafas-client/blob/6/docs/stop.md) to **find a stop/station by ID**.
 `,
 	'/stops/:id/departures': `\
-Uses [\`hafasClient.departures()\`](https://github.com/public-transport/hafas-client/blob/5/docs/departures.md) to **get departures at a stop/station**.
+Uses [\`hafasClient.departures()\`](https://github.com/public-transport/hafas-client/blob/6/docs/departures.md) to **get departures at a stop/station**.
 `,
 	'/stops/:id/arrivals': `\
-Works like [\`/stops/:id/departures\`](#get-stopsiddepartures), except that it uses [\`hafasClient.arrivals()\`](https://github.com/public-transport/hafas-client/blob/5/docs/arrivals.md) to **arrivals at a stop/station**.
+Works like [\`/stops/:id/departures\`](#get-stopsiddepartures), except that it uses [\`hafasClient.arrivals()\`](https://github.com/public-transport/hafas-client/blob/6/docs/arrivals.md) to **arrivals at a stop/station**.
 `,
 	'/stations': `\
 If the \`query\` parameter is used, it will use [\`db-stations-autocomplete@2\`](https://github.com/derhuerst/db-stations-autocomplete/tree/2.2.0) to autocomplete *Deutsche Bahn*-operated stops/stations. Otherwise, it will filter the stops/stations in [\`db-stations@3\`](https://github.com/derhuerst/db-stations/tree/3.0.1).
@@ -56,7 +56,7 @@ Instead of receiving a JSON response, you can request [newline-delimited JSON](h
 Returns a stop/station from [\`db-stations\`](https://npmjs.com/package/db-stations).
 `,
 	'/journeys': `\
-Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-client/blob/5/docs/journeys.md) to **find journeys from A (\`from\`) to B (\`to\`)**.
+Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-client/blob/6/docs/journeys.md) to **find journeys from A (\`from\`) to B (\`to\`)**.
 
 \`from\` (A), \`to\` (B), and the optional \`via\` must each have one of these formats:
 
@@ -68,20 +68,20 @@ Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-clie
 
 Given a response, you can also fetch more journeys matching the same criteria. Instead of \`from*\`, \`to*\` & \`departure\`/\`arrival\`, pass \`earlierRef\` from the first response as \`earlierThan\` to get journeys "before", or \`laterRef\` as \`laterThan\` to get journeys "after".
 
-Check the [\`hafasClient.journeys()\` docs](https://github.com/public-transport/hafas-client/blob/5/docs/journeys.md) for more details.
+Check the [\`hafasClient.journeys()\` docs](https://github.com/public-transport/hafas-client/blob/6/docs/journeys.md) for more details.
 `,
 	'/journeys/:ref': `\
-Uses [\`hafasClient.refreshJourney()\`](https://github.com/public-transport/hafas-client/blob/5/docs/refresh-journey.md) to **"refresh" a journey, using its \`refreshToken\`**.
+Uses [\`hafasClient.refreshJourney()\`](https://github.com/public-transport/hafas-client/blob/6/docs/refresh-journey.md) to **"refresh" a journey, using its \`refreshToken\`**.
 
 The journey will be the same (equal \`from\`, \`to\`, \`via\`, date/time & vehicles used), but you can get up-to-date realtime data, like delays & cancellations.
 `,
 	'/trips/:id': `\
-Uses [\`hafasClient.trip()\`](https://github.com/public-transport/hafas-client/blob/5/docs/trip.md) to **fetch a trip by ID**.
+Uses [\`hafasClient.trip()\`](https://github.com/public-transport/hafas-client/blob/6/docs/trip.md) to **fetch a trip by ID**.
 
 A trip is a specific vehicle, stopping at a series of stops at specific points in time. Departures, arrivals & journey legs reference trips by their ID.
 `,
 	'/radar': `\
-Uses [\`hafasClient.radar()\`](https://github.com/public-transport/hafas-client/blob/5/docs/radar.md) to **find all vehicles currently in an area**, as well as their movements.
+Uses [\`hafasClient.radar()\`](https://github.com/public-transport/hafas-client/blob/6/docs/radar.md) to **find all vehicles currently in an area**, as well as their movements.
 `,
 }
 

@@ -1,4 +1,4 @@
-import createApi from 'hafas-rest-api'
+import {createHafasRestApi} from 'hafas-rest-api'
 import getPort from 'get-port'
 import {createServer} from 'node:http'
 import {promisify} from 'node:util'
@@ -21,7 +21,7 @@ const createTestApi = async (mocks, cfg) => {
 		...cfg,
 	}
 
-	const api = createApi(mockedHafas, cfg, () => {})
+	const api = await createHafasRestApi(mockedHafas, cfg, () => {})
 	const server = createServer(api)
 
 	const port = await getPort()

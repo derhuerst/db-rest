@@ -4,7 +4,7 @@
 
 [![API status](https://badgen.net/uptime-robot/status/m784879516-8a977fa91b975fc3884a9857)](https://stats.uptimerobot.com/57wNLs39M/784879516)
 
-Because it wraps [an API](https://github.com/public-transport/hafas-client/blob/master/readme.md#background) of [Deutsche Bahn](https://de.wikipedia.org/wiki/Deutsche_Bahn), it **includes most of the long-distance and regional traffic, as well as some international trains and local buses**. Essentially, it returns whatever data the [*DB Navigator* app](https://www.bahn.de/p/view/service/mobile/db-navigator.shtml) shows, **including realtime delays and disruptions**.
+Because it wraps [an API](https://github.com/public-transport/hafas-client/blob/6/readme.md#background) of [Deutsche Bahn](https://de.wikipedia.org/wiki/Deutsche_Bahn), it **includes most of the long-distance and regional traffic, as well as some international trains and local buses**. Essentially, it returns whatever data the [*DB Navigator* app](https://www.bahn.de/p/view/service/mobile/db-navigator.shtml) shows, **including realtime delays and disruptions**.
 
 - [Getting Started](getting-started.md)
 - [API documentation](api.md)
@@ -14,7 +14,7 @@ Because it wraps [an API](https://github.com/public-transport/hafas-client/blob/
 
 ### Realtime Data
 
-This API returns realtime data whenever its upstream, the [API for DB's mobile app](https://github.com/public-transport/hafas-client/blob/33d7d30acf235c54887c6459a15fe581982c6a19/p/db/readme.md), provides it.
+This API returns realtime data whenever its upstream, the [API for DB's mobile app](https://github.com/public-transport/hafas-client/blob/6/p/db/readme.md), provides it.
 
 ### No API Key
 

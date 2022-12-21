@@ -5,12 +5,12 @@ const require = createRequire(import.meta.url)
 
 import {dirname, join as pathJoin} from 'node:path'
 import {fileURLToPath} from 'node:url'
-import createHafas from 'db-hafas'
-import createApi from 'hafas-rest-api'
+import {createDbHafas as createHafas} from 'db-hafas'
+import {createHafasRestApi} from 'hafas-rest-api'
 import createHealthCheck from 'hafas-client-health-check'
 import Redis from 'ioredis'
-import withCache from 'cached-hafas-client'
-import redisStore from 'cached-hafas-client/stores/redis.js'
+import {createCachedHafasClient} from 'cached-hafas-client'
+import {createRedisStore} from 'cached-hafas-client/stores/redis.js'
 import serveStatic from 'serve-static'
 import {parseBoolean} from 'hafas-rest-api/lib/parse.js'
 import {loyaltyCardParser} from './lib/loyalty-cards.js'
@@ -29,7 +29,7 @@ let healthCheck = createHealthCheck(hafas, berlinHbf)
 
 if (process.env.REDIS_URL) {
 	const redis = new Redis(process.env.REDIS_URL || null)
-	hafas = withCache(hafas, redisStore(redis), {
+	hafas = createCachedHafasClient(hafas, createRedisStore(redis), {
 		cachePeriods: {
 			locations: 6 * 60 * 60 * 1000, // 6h
 		},
@@ -87,7 +87,7 @@ const config = {
 	modifyRoutes,
 }
 
-const api = createApi(hafas, config, (api) => {
+const api = await createHafasRestApi(hafas, config, (api) => {
 	api.use('/', serveStatic(docsRoot, {
 		extensions: ['html', 'htm'],
 	}))
