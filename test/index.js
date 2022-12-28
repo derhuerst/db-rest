@@ -105,6 +105,6 @@ tape.test('/stations?query=frankfurt%20ha works', async (t) => {
 		for await (const station of parser) stations.push(station)
 
 		t.ok(stations.find(s => s.id === FRANKFURT_MAIN_HBF))
-		t.ok(Object.keys(stations).length > 0)
+		t.ok(stations.length > 0)
 	}
 })
