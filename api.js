@@ -12,7 +12,7 @@ import Redis from 'ioredis'
 import {createCachedHafasClient} from 'cached-hafas-client'
 import {createRedisStore} from 'cached-hafas-client/stores/redis.js'
 import serveStatic from 'serve-static'
-import {parseBoolean} from 'hafas-rest-api/lib/parse.js'
+import {parseBoolean, parseInteger} from 'hafas-rest-api/lib/parse.js'
 import {loyaltyCardParser} from './lib/loyalty-cards.js'
 import {route as stations} from './routes/stations.js'
 import {route as station} from './routes/station.js'
@@ -59,6 +59,12 @@ const mapRouteParsers = (route, parsers) => {
 			type: 'boolean',
 			default: 'false',
 			parse: parseBoolean,
+		},
+		age: {
+			description: 'Age of traveller',
+			type: 'integer',
+			defaultStr: '*adult*',
+			parse: parseInteger
 		},
 	}
 }
