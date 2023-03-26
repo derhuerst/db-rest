@@ -34,13 +34,11 @@ jobs:
       - name: build Docker image & push to Docker Hub
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           tags: |
             derhuerst/db-rest:6
             derhuerst/db-rest:latest
-          # https://docs.docker.com/build/ci/github-actions/examples/#github-cache
-          cache-from: type=gha
-          cache-to: type=gha,mode=max,oci-mediatypes=true,compression=zstd
 
       # this is for the public-transport/infrastructure cluster
       - name: log in to GitHub Container Registry
@@ -58,8 +56,6 @@ jobs:
       - name: push Docker image to GitHub Registry
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           tags: ghcr.io/${{github.repository}}:v6_${{steps.hash.outputs.hash}}_${{steps.datetime.outputs.datetime}}
-          # https://docs.docker.com/build/ci/github-actions/examples/#github-cache
-          cache-from: type=gha
-          cache-to: type=gha,mode=max,oci-mediatypes=true,compression=zstd
