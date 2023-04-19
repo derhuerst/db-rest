@@ -34,6 +34,8 @@ git clone https://github.com/derhuerst/db-rest.git
 cd db-rest
 git checkout 6
 npm install
+
+export HOSTNAME='my-vbb-rest-api.example.org'
 npm run build
 
 redis-server &
