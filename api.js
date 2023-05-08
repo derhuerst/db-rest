@@ -24,6 +24,7 @@ const docsRoot = pathJoin(__dirname, 'docs')
 
 const berlinHbf = '8011160'
 
+// todo: use process.env.HAFAS_USER_AGENT if defined
 let hafas = createHafas(pkg.name)
 let healthCheck = createHealthCheck(hafas, berlinHbf)
 
