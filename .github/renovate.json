@@ -1,0 +1,16 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended"
+    ],
+    "configMigration": true,
+    "lockFileMaintenance": {
+        "enabled": true,
+        "automerge": true,
+        "automergeType": "branch",
+        "ignoreTests": true
+    },
+    "schedule": [
+        "before 4am on tuesday"
+    ]
+}
