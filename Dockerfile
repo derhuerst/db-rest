@@ -3,8 +3,8 @@ WORKDIR /app
 
 # install dependencies
 RUN apk add --update git bash
-ADD package.json /app
-RUN npm install
+ADD package.json package-lock.json /app
+RUN npm ci
 
 # build documentation
 ADD . /app
