@@ -4,8 +4,6 @@ const createHafas = require('db-hafas')
 const createApi = require('hafas-rest-api')
 const createHealthCheck = require('hafas-client-health-check')
 const Redis = require('ioredis')
-const withCache = require('cached-hafas-client')
-const redisStore = require('cached-hafas-client/stores/redis')
 const {join: pathJoin} = require('path')
 const serveStatic = require('serve-static')
 const {parseBoolean} = require('hafas-rest-api/lib/parse')
@@ -22,6 +20,9 @@ let hafas = createHafas(pkg.name)
 let healthCheck = createHealthCheck(hafas, berlinHbf)
 
 if (process.env.REDIS_URL) {
+	const withCache = require('cached-hafas-client')
+	const redisStore = require('cached-hafas-client/stores/redis')
+
 	const redis = new Redis(process.env.REDIS_URL || null)
 	hafas = withCache(hafas, redisStore(redis), {
 		cachePeriods: {
