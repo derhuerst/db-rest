@@ -61,7 +61,7 @@ Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-clie
 \`from\` (A), \`to\` (B), and the optional \`via\` must each have one of these formats:
 
 - as stop/station ID (e.g. \`from=8010159\` for *Halle (Saale) Hbf*)
-- as a POI (e.g. \`from.id=991561765&from.latitude=51.48364&from.longitude=11.98084\` for *Halle+(Saale),+Stadtpark+Halle+(Grünanlagen)*)
+- as a POI (e.g. \`from.id=991561765&from.latitude=51.48364&from.longitude=11.98084&from.name=Halle+(Saale),+Stadtpark+Halle+(Grünanlagen)\` for *Halle+(Saale),+Stadtpark+Halle+(Grünanlagen)*)
 - as an address (e.g. \`from.latitude=51.25639&from.longitude=7.46685&from.address=Hansestadt+Breckerfeld,+Hansering+3\` for *Hansestadt Breckerfeld, Hansering 3*)
 
 ### Pagination
