@@ -51,5 +51,15 @@
 		"lint": "eslint .",
 		"test": "node test/index.js | tap-min"
 	},
-	"goatCounterUrl": "https://37462fdee48390778258.goatcounter.com/count"
+	"goatCounterUrl": "https://37462fdee48390778258.goatcounter.com/count",
+	"files": [
+		"docs",
+		"lib",
+		"routes",
+		"api.js",
+		"index.js"
+	],
+	"bin": {
+		"db-rest": "./index.js"
+	}
 }
