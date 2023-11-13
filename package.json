@@ -4,7 +4,17 @@
 	"description": "A clean REST API wrapping around the Deutsche Bahn API.",
 	"version": "6.0.3",
 	"type": "module",
+	"bin": {
+		"db-rest": "./index.js"
+	},
 	"main": "index.js",
+	"files": [
+		"docs",
+		"lib",
+		"routes",
+		"api.js",
+		"index.js"
+	],
 	"author": "Jannis R <mail@jannisr.de>",
 	"homepage": "https://github.com/derhuerst/db-rest/tree/6",
 	"repository": "derhuerst/db-rest",
