@@ -47,6 +47,7 @@ To keep the API running permanently, use tools like [`forever`](https://github.c
 
 ## Related Projects
 
+- [`DB-Adapter-v6`](https://github.com/olech2412/DB-Adapter-v6) – A Java API client for `db-rest`.
 - [`vbb-rest`](https://github.com/derhuerst/vbb-rest) – A clean REST API wrapping around the VBB API.
 - [`bvg-rest`](https://github.com/derhuerst/bvg-rest) – A clean REST API wrapping around the BVG API.
 - [`hvv-rest`](https://github.com/derhuerst/hvv-rest) – A clean REST API wrapping around the HVV API.
