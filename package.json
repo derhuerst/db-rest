@@ -45,6 +45,9 @@
 		"serve-buffer": "^3.0.3",
 		"serve-static": "^1.14.1"
 	},
+	"optionalDependencies": {
+		"localaddress-agent": "^2.1.1"
+	},
 	"devDependencies": {
 		"@derhuerst/technical-docs-cli": "^1.5.0",
 		"axios": "^1.6.1",
