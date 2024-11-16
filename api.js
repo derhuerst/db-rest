@@ -9,6 +9,7 @@ import {
 	createDbHafas as createHafas,
 	defaults as dbHafasDefaults,
 } from 'db-hafas'
+import {createWriteStream} from 'node:fs'
 import {createHafasRestApi} from 'hafas-rest-api'
 import createHealthCheck from 'hafas-client-health-check'
 import Redis from 'ioredis'
@@ -39,6 +40,21 @@ if (process.env.RANDOM_LOCAL_ADDRESSES_RANGE) {
 	customDbProfile.transformReq = (_, req) => {
 		req.agent = randomLocalAddressAgent
 		return req
+	}
+}
+
+if (process.env.HAFAS_REQ_RES_LOG_FILE) {
+	const hafasLogPath = process.env.HAFAS_REQ_RES_LOG_FILE
+	const hafasLog = createWriteStream(hafasLogPath, {flags: 'a'}) // append-only
+	hafasLog.on('error', (err) => console.error('hafasLog error', err))
+
+	customDbProfile.logRequest = (ctx, req, reqId) => {
+		console.error(reqId, 'req', req.body + '') // todo: remove
+		hafasLog.write(JSON.stringify([reqId, 'req', req.body + '']) + '\n')
+	}
+	customDbProfile.logResponse = (ctx, res, body, reqId) => {
+		console.error(reqId, 'res', body + '') // todo: remove
+		hafasLog.write(JSON.stringify([reqId, 'res', body + '']) + '\n')
 	}
 }
 
