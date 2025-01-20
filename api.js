@@ -5,10 +5,8 @@ const require = createRequire(import.meta.url)
 
 import {dirname, join as pathJoin} from 'node:path'
 import {fileURLToPath} from 'node:url'
-import {
-	createDbHafas as createHafas,
-	defaults as dbHafasDefaults,
-} from 'db-hafas'
+import {createClient} from 'db-vendo-client'
+import {profile as dbnavProfile} from 'db-vendo-client/p/dbnav/index.js'
 import {createWriteStream} from 'node:fs'
 import {createHafasRestApi} from 'hafas-rest-api'
 import createHealthCheck from 'hafas-client-health-check'
@@ -31,7 +29,7 @@ const docsRoot = pathJoin(__dirname, 'docs')
 const berlinHbf = '8011160'
 
 const customDbProfile = {
-	...dbHafasDefaults.profile,
+	...dbnavProfile,
 }
 
 // todo: DRY env var check with localaddress-agent/random-from-env.js
@@ -60,10 +58,10 @@ if (process.env.HAFAS_REQ_RES_LOG_FILE) {
 	}
 }
 
-// todo: use process.env.HAFAS_USER_AGENT if defined
-let hafas = createHafas(pkg.name, {
-	profile: customDbProfile,
-})
+let hafas = createClient(
+	customDbProfile,
+	process.env.USER_AGENT || process.env.HAFAS_USER_AGENT || pkg.name
+)
 let healthCheck = createHealthCheck(hafas, berlinHbf)
 
 if (process.env.REDIS_URL) {
