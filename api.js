@@ -15,7 +15,7 @@ import {createCachedHafasClient} from 'cached-hafas-client'
 import {createRedisStore} from 'cached-hafas-client/stores/redis.js'
 import serveStatic from 'serve-static'
 import {parseBoolean, parseInteger} from 'hafas-rest-api/lib/parse.js'
-import {loyaltyCardParser} from './lib/loyalty-cards.js'
+import {loyaltyCardParser, parseLoyaltyCard} from './lib/loyalty-cards.js'
 import {route as stations} from './routes/stations.js'
 import {route as station} from './routes/station.js'
 import {parseRoutingMode} from './lib/parse.js'
@@ -86,11 +86,20 @@ if (process.env.REDIS_URL) {
 	)
 }
 
+const parseArrayOr = (parseEntry) => {
+	return (key, val) => {
+		if (Array.isArray(val)) {
+			return val.map(e => parseEntry(key, e));
+		}
+		return parseEntry(key, val);
+	}
+}
+
 const mapRouteParsers = (route, parsers) => {
 	if (route !== 'journeys') return parsers
 	return {
 		...parsers,
-		loyaltyCard: loyaltyCardParser,
+		loyaltyCard: {...loyaltyCardParser, parse: parseArrayOr(parseLoyaltyCard)},
 		firstClass: {
 			description: 'Search for first-class options?',
 			type: 'boolean',
@@ -101,7 +110,7 @@ const mapRouteParsers = (route, parsers) => {
 			description: 'Age of traveller',
 			type: 'integer',
 			defaultStr: '*adult*',
-			parse: parseInteger
+			parse: parseArrayOr(parseInteger)
 		},
 		routingMode: {
 			description: 'HAFAS routing mode, see the "Routing Mode" section',
