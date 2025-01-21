@@ -68,7 +68,17 @@ Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-clie
 
 Given a response, you can also fetch more journeys matching the same criteria. Instead of \`from*\`, \`to*\` & \`departure\`/\`arrival\`, pass \`earlierRef\` from the first response as \`earlierThan\` to get journeys "before", or \`laterRef\` as \`laterThan\` to get journeys "after".
 
+*Pagination isn't fully functioning with the default [\`routingMode\`](#routing-mode).*
+
 Check the [\`hafasClient.journeys()\` docs](https://github.com/public-transport/hafas-client/blob/6/docs/journeys.md) for more details.
+
+### Routing mode
+
+The \`routingMode\` parameter influences which data the system uses to compute the query results. The default is \`REALTIME\` and does *not* include canceled journeys. If you want canceled journeys to be included in the response, use \`HYBRID\` instead.
+
+Furthermore, \`REALTIME\` doesn't support [Pagination](#pagination) fully. If you need fully functioning pagination, use \`HYBRID\` instead.
+
+The \`hafas-client\` repository has [more details on the different routing modes](https://github.com/public-transport/hafas-client/blob/45610fc951bb834e1b6f09e363ee820c0b92b673/p/db/readme.md#using-the-routingmode-option).
 `,
 	'/journeys/:ref': `\
 Uses [\`hafasClient.refreshJourney()\`](https://github.com/public-transport/hafas-client/blob/6/docs/refresh-journey.md) to **"refresh" a journey, using its \`refreshToken\`**.

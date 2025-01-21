@@ -41,6 +41,15 @@ tape.test('/journeys?loyaltyCard works', async (t) => {
 	}, {}, '/journeys?from=123&to=234&loyaltyCard=bahncard-2nd-50')
 })
 
+tape.test('/journeys?routingMode works', async (t) => {
+	await fetchWithTestApi({
+		journeys: async (from, to, opt = {}) => {
+			t.equal(opt.routingMode, 'HYBRID', 'value is not case-sensitive')
+			return NO_JOURNEYS
+		}
+	}, {}, '/journeys?from=123&to=234&routingMode=HYbriD')
+})
+
 tape.test('/stations works', async (t) => {
 	const {data: allStations} = await pAllStations
 	const someStationId = Object.keys(allStations)[0]
