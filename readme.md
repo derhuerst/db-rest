@@ -4,6 +4,10 @@
 
 [**API Documentation**](docs/readme.md)
 
+> [!IMPORTANT]
+> The [DB HAFAS API is currently not available](https://github.com/public-transport/hafas-client/issues/331), and it seems like it has been shut off permanently. We're considering changing `db-rest` to use [`db-vendo-client`](https://github.com/public-transport/db-vendo-client), please follow [Issue #60](https://github.com/derhuerst/db-rest/issues/60) for updates.
+> You can also use [`db-vendo-client`](https://github.com/public-transport/db-vendo-client) yourself as a replacement, it covers most of the use cases served by `db-rest`, but [the underlying APIs seem to have a **much lower rate limit**](https://github.com/public-transport/db-vendo-client/issues/10). ⚠️
+
 ![db-rest architecture diagram](architecture.svg)
 
 [![API status](https://badgen.net/uptime-robot/status/m793274556-25c5e9bbab0297d91cda7134)](https://stats.uptimerobot.com/57wNLs39M/793274556)

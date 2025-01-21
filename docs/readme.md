@@ -2,7 +2,15 @@
 
 [`v6.db.transport.rest`](https://v6.db.transport.rest/) is a [REST API](https://restfulapi.net) for the public transportation system in Germany.
 
+## The API is currently unavailable!
+
+**The underlying [DB HAFAS API is currently not available](https://github.com/public-transport/hafas-client/issues/331)**, and it seems like it has been shut off permanently. We're considering changing `db-rest` to use [`db-vendo-client`](https://github.com/public-transport/db-vendo-client), **please follow [Issue #60](https://github.com/derhuerst/db-rest/issues/60) for updates**.
+
+You can also use [`db-vendo-client`](https://github.com/public-transport/db-vendo-client) yourself as a replacement, it covers most of the use cases served by `db-rest`, but [the underlying APIs seem to have a **much lower rate limit**](https://github.com/public-transport/db-vendo-client/issues/10).
+
 [![API status](https://badgen.net/uptime-robot/status/m793274556-25c5e9bbab0297d91cda7134)](https://stats.uptimerobot.com/57wNLs39M/793274556)
+
+## How it works
 
 Because it wraps [an API](https://github.com/public-transport/hafas-client/blob/6/readme.md#background) of [Deutsche Bahn](https://de.wikipedia.org/wiki/Deutsche_Bahn), it **includes most of the long-distance and regional traffic, as well as some international trains and local buses**. Essentially, it returns whatever data the [*DB Navigator* app](https://www.bahn.de/p/view/service/mobile/db-navigator.shtml) shows*, **including realtime delays and disruptions**.
 
