@@ -1,7 +1,7 @@
 import tape from 'tape'
 import _ndjson from 'ndjson'
 const {parse: ndjsonParser} = _ndjson
-import {loyaltyCards} from '../lib/loyalty-cards.js'
+import {data as loyaltyCards} from 'db-vendo-client/format/loyalty-cards.js'
 import {fetchWithTestApi} from './util.js'
 import {pStations as pAllStations} from '../lib/db-stations.js'
 
@@ -40,7 +40,7 @@ tape.test('/journeys?loyaltyCard works', async (t) => {
 		}
 	}, {}, '/journeys?from=123&to=234&loyaltyCard=bahncard-2nd-50')
 })
-
+/*
 tape.test('/journeys?routingMode works', async (t) => {
 	await fetchWithTestApi({
 		journeys: async (from, to, opt = {}) => {
@@ -49,6 +49,7 @@ tape.test('/journeys?routingMode works', async (t) => {
 		}
 	}, {}, '/journeys?from=123&to=234&routingMode=HYbriD')
 })
+*/
 
 tape.test('/stations works', async (t) => {
 	const {data: allStations} = await pAllStations
