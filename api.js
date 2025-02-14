@@ -14,12 +14,9 @@ import Redis from 'ioredis'
 import {createCachedHafasClient} from 'cached-hafas-client'
 import {createRedisStore} from 'cached-hafas-client/stores/redis.js'
 import serveStatic from 'serve-static'
-import {parseBoolean, parseInteger} from 'hafas-rest-api/lib/parse.js'
-import {loyaltyCardParser, parseLoyaltyCard} from './lib/loyalty-cards.js'
+import {mapRouteParsers} from 'db-vendo-client/lib/api-parsers.js'
 import {route as stations} from './routes/stations.js'
 import {route as station} from './routes/station.js'
-import {parseRoutingMode} from './lib/parse.js'
-import {routingModes} from 'hafas-client/p/db/routing-modes.js'
 
 const pkg = require('./package.json')
 
@@ -84,42 +81,6 @@ if (process.env.REDIS_URL) {
 		(await checkHafas()) === true &&
 		(await checkRedis()) === true
 	)
-}
-
-const parseArrayOr = (parseEntry) => {
-	return (key, val) => {
-		if (Array.isArray(val)) {
-			return val.map(e => parseEntry(key, e));
-		}
-		return parseEntry(key, val);
-	}
-}
-
-const mapRouteParsers = (route, parsers) => {
-	if (route !== 'journeys') return parsers
-	return {
-		...parsers,
-		loyaltyCard: {...loyaltyCardParser, parse: parseArrayOr(parseLoyaltyCard)},
-		firstClass: {
-			description: 'Search for first-class options?',
-			type: 'boolean',
-			default: 'false',
-			parse: parseBoolean,
-		},
-		age: {
-			description: 'Age of traveller',
-			type: 'integer',
-			defaultStr: '*adult*',
-			parse: parseArrayOr(parseInteger)
-		},
-		routingMode: {
-			description: 'HAFAS routing mode, see the "Routing Mode" section',
-			type: 'string',
-			enum: Object.keys(routingModes),
-			defaultStr: '`REALTIME`',
-			parse: parseRoutingMode
-		},
-	}
 }
 
 const modifyRoutes = (routes, hafas, config) => {
