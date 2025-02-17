@@ -101,7 +101,7 @@ const config = {
 	logging: true,
 	aboutPage: false,
 	etags: 'strong',
-	csp: `default-src 'none' style-src 'self' 'unsafe-inline' img-src https:`,
+	csp: `default-src 'none'; style-src 'self' 'unsafe-inline'; img-src https:`,
 	healthCheck,
 	mapRouteParsers,
 	modifyRoutes,
