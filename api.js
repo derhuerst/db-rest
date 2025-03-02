@@ -5,8 +5,11 @@ const require = createRequire(import.meta.url)
 
 import {dirname, join as pathJoin} from 'node:path'
 import {fileURLToPath} from 'node:url'
-import {createClient} from 'db-vendo-client'
+import {createClient, loadEnrichedStationData} from 'db-vendo-client'
+import {defaultProfile} from 'db-vendo-client/lib/default-profile.js'
+import {profile as dbProfile} from 'db-vendo-client/p/db/index.js'
 import {profile as dbnavProfile} from 'db-vendo-client/p/dbnav/index.js'
+import {profile as dbwebProfile} from 'db-vendo-client/p/dbweb/index.js'
 import {createWriteStream} from 'node:fs'
 import {createHafasRestApi} from 'hafas-rest-api'
 import createHealthCheck from 'hafas-client-health-check'
@@ -17,6 +20,8 @@ import serveStatic from 'serve-static'
 import {mapRouteParsers} from 'db-vendo-client/lib/api-parsers.js'
 import {route as stations} from './routes/stations.js'
 import {route as station} from './routes/station.js'
+import {parseString} from 'hafas-rest-api/lib/parse.js'
+import {enrichStation} from 'db-vendo-client/parse/location.js'
 
 const pkg = require('./package.json')
 
@@ -25,19 +30,65 @@ const docsRoot = pathJoin(__dirname, 'docs')
 
 const berlinHbf = '8011160'
 
-const customDbProfile = {
-	...dbnavProfile,
+const stationIndex = await loadEnrichedStationData(defaultProfile);
+const userAgent = process.env.USER_AGENT || process.env.HAFAS_USER_AGENT || pkg.name;
+const opt = {
+	enrichStations: (ctx, stop) => enrichStation(ctx, stop, stationIndex)
+}
+const profileClients = {
+	'db': createClient(dbProfile, userAgent, opt),
+	'dbnav': createClient(dbnavProfile, userAgent, opt),
+	'dbweb': createClient(dbwebProfile, userAgent, opt),
+}
+
+const mapRouteParsersWithDynamicProfile = (route, parsers) => {
+	return {
+		...mapRouteParsers(route, parsers),
+		profile: {
+			description: 'db-vendo-client profile to use for this request',
+			type: 'string',
+			default: 'dbnav',
+			parse: parseString,
+		},
+	}
+}
+
+const profileSwitchingEndpoint = (endpoint) => {
+	return (...args) => {
+		const opt = args[args.length - 1];
+		const p = profileClients[opt.profile] || profileClients.dbnav;
+		if (!p.departuresGetPasslist && !opt.stopovers) {
+			delete opt.stopovers;
+		}
+		return p[endpoint](...args);
+	}
+}
+
+let profileSwitchingClient = {
+	profile: {
+		...defaultProfile,
+		locale: 'de-DE',
+		timezone: 'Europe/Berlin',
+		departuresGetPasslist: true,
+	},
+	departures: profileSwitchingEndpoint('departures'),
+	arrivals: profileSwitchingEndpoint('arrivals'),
+	journeys: profileSwitchingEndpoint('journeys'),
+	refreshJourney: profileSwitchingEndpoint('refreshJourney'),
+	trip: profileSwitchingEndpoint('trip'),
+	locations: profileSwitchingEndpoint('locations'),
+	stop: profileSwitchingEndpoint('stop'),
+	nearby: profileSwitchingEndpoint('nearby')
 }
 
 // todo: DRY env var check with localaddress-agent/random-from-env.js
 // Currently, this is impossible: localaddress-agent is an optional dependencies, so we rely on it to check the env var.
 if (process.env.RANDOM_LOCAL_ADDRESSES_RANGE) {
 	const {randomLocalAddressAgent} = await import('localaddress-agent/random-from-env.js')
-
-	customDbProfile.transformReq = (_, req) => {
+	Object.values(profileClients).forEach(c => c.profile.transformReq = (_, req) => {
 		req.agent = randomLocalAddressAgent
 		return req
-	}
+	})
 }
 
 if (process.env.HAFAS_REQ_RES_LOG_FILE) {
@@ -45,25 +96,23 @@ if (process.env.HAFAS_REQ_RES_LOG_FILE) {
 	const hafasLog = createWriteStream(hafasLogPath, {flags: 'a'}) // append-only
 	hafasLog.on('error', (err) => console.error('hafasLog error', err))
 
-	customDbProfile.logRequest = (ctx, req, reqId) => {
-		console.error(reqId, 'req', req.body + '') // todo: remove
-		hafasLog.write(JSON.stringify([reqId, 'req', req.body + '']) + '\n')
-	}
-	customDbProfile.logResponse = (ctx, res, body, reqId) => {
-		console.error(reqId, 'res', body + '') // todo: remove
-		hafasLog.write(JSON.stringify([reqId, 'res', body + '']) + '\n')
-	}
+	Object.keys(profileClients).forEach(name => {
+		profileClients[name].profile.logRequest = (ctx, req, reqId) => {
+			console.error(reqId + '_' + name, 'req', req.body + '') // todo: remove
+			hafasLog.write(JSON.stringify([reqId + '_' + name, 'req', req.body + '']) + '\n')
+		}
+		profileClients[name].profile.logResponse = (ctx, res, body, reqId) => {
+			console.error(reqId + '_' + name, 'res', body + '') // todo: remove
+			hafasLog.write(JSON.stringify([reqId + '_' + name, 'res', body + '']) + '\n')
+		}
+	})
 }
 
-let hafas = createClient(
-	customDbProfile,
-	process.env.USER_AGENT || process.env.HAFAS_USER_AGENT || pkg.name
-)
-let healthCheck = createHealthCheck(hafas, berlinHbf)
+let healthCheck = createHealthCheck(profileSwitchingClient, berlinHbf)
 
 if (process.env.REDIS_URL) {
 	const redis = new Redis(process.env.REDIS_URL || null)
-	hafas = createCachedHafasClient(hafas, createRedisStore(redis), {
+	profileSwitchingClient = createCachedHafasClient(profileSwitchingClient, createRedisStore(redis), {
 		cachePeriods: {
 			locations: 6 * 60 * 60 * 1000, // 6h
 		},
@@ -103,18 +152,18 @@ const config = {
 	etags: 'strong',
 	csp: `default-src 'none'; style-src 'self' 'unsafe-inline'; img-src https:`,
 	healthCheck,
-	mapRouteParsers,
+	mapRouteParsers: mapRouteParsersWithDynamicProfile,
 	modifyRoutes,
 }
 
-const api = await createHafasRestApi(hafas, config, (api) => {
+const api = await createHafasRestApi(profileSwitchingClient, config, (api) => {
 	api.use('/', serveStatic(docsRoot, {
 		extensions: ['html', 'htm'],
 	}))
 })
 
 export {
-	hafas,
+	profileSwitchingClient as hafas,
 	config,
 	api,
 }

@@ -20,6 +20,8 @@ Because it wraps [APIs](https://github.com/public-transport/db-vendo-client/blob
 - [API documentation](api.md) (run `npm run build` to generate)
 - [OpenAPI playground with API documentation](https://petstore.swagger.io/?url=https%3A%2F%2Fv6.db.transport.rest%2F.well-known%2Fservice-desc%0A)
 
+By default, the `dbnav` profile of [db-vendo-client](https://github.com/public-transport/db-vendo-client) will be used. On all endpoints, you can use the `profile` URL parameter to change to a different profile, e.g. `profile=db` or `profile=dbweb`. As per [db-vendo-client](https://github.com/public-transport/db-vendo-client)'s documentation, this will have an impact on returned details, parameter limits and quotas.
+
 ## Why not to use this API?
 
 ### Low rate limits
@@ -32,7 +34,7 @@ Because it wraps [APIs](https://github.com/public-transport/db-vendo-client/blob
 
 ### Use other APIs
 
-[transitous.org](https://transitous.org) may be another option, even with worldwide coverage based on GTFS/RT-feeds, however, as with any other APIs, it should not be flooded with requests.
+[transitous.org](https://transitous.org) may be another option, even with worldwide coverage based on GTFS/RT-feeds, however, as with any other APIs, it should not be flooded with requests. If only data on trains is needed (no buses, trams etc.), [DB (I)RIS-based APIs](https://developers.deutschebahn.com/db-api-marketplace/apis/product/timetables) may also be of interest.
 
 ### Run your own instance of this API
 
