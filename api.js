@@ -53,29 +53,32 @@ const mapRouteParsersWithDynamicProfile = (route, parsers) => {
 	}
 }
 
-const endpointProxy = (endpoint) => {
+const profileSwitchingEndpoint = (endpoint) => {
 	return (...args) => {
 		const opt = args[args.length - 1];
 		const p = profileClients[opt.profile] || profileClients.dbnav;
+		if (!p.departuresGetPasslist && !opt.stopovers) {
+			delete opt.stopovers;
+		}
 		return p[endpoint](...args);
 	}
 }
 
-let proxyClient = {
+let profileSwitchingClient = {
 	profile: {
 		...defaultProfile,
 		locale: 'de-DE',
 		timezone: 'Europe/Berlin',
 		departuresGetPasslist: true,
 	},
-	departures: endpointProxy('departures'),
-	arrivals: endpointProxy('arrivals'),
-	journeys: endpointProxy('journeys'),
-	refreshJourney: endpointProxy('refreshJourney'),
-	trip: endpointProxy('trip'),
-	locations: endpointProxy('locations'),
-	stop: endpointProxy('stop'),
-	nearby: endpointProxy('nearby')
+	departures: profileSwitchingEndpoint('departures'),
+	arrivals: profileSwitchingEndpoint('arrivals'),
+	journeys: profileSwitchingEndpoint('journeys'),
+	refreshJourney: profileSwitchingEndpoint('refreshJourney'),
+	trip: profileSwitchingEndpoint('trip'),
+	locations: profileSwitchingEndpoint('locations'),
+	stop: profileSwitchingEndpoint('stop'),
+	nearby: profileSwitchingEndpoint('nearby')
 }
 
 // todo: DRY env var check with localaddress-agent/random-from-env.js
@@ -93,23 +96,23 @@ if (process.env.HAFAS_REQ_RES_LOG_FILE) {
 	const hafasLog = createWriteStream(hafasLogPath, {flags: 'a'}) // append-only
 	hafasLog.on('error', (err) => console.error('hafasLog error', err))
 
-	Object.keys(profileClients).forEach(c => {
-		profileClients[c].profile.logRequest = (ctx, req, reqId) => {
-			console.error(reqId + '_' + c, 'req', req.body + '') // todo: remove
-			hafasLog.write(JSON.stringify([reqId + '_' + c, 'req', req.body + '']) + '\n')
+	Object.keys(profileClients).forEach(name => {
+		profileClients[name].profile.logRequest = (ctx, req, reqId) => {
+			console.error(reqId + '_' + name, 'req', req.body + '') // todo: remove
+			hafasLog.write(JSON.stringify([reqId + '_' + name, 'req', req.body + '']) + '\n')
 		}
-		profileClients[c].profile.logResponse = (ctx, res, body, reqId) => {
-			console.error(reqId + '_' + c, 'res', body + '') // todo: remove
-			hafasLog.write(JSON.stringify([reqId + '_' + c, 'res', body + '']) + '\n')
+		profileClients[name].profile.logResponse = (ctx, res, body, reqId) => {
+			console.error(reqId + '_' + name, 'res', body + '') // todo: remove
+			hafasLog.write(JSON.stringify([reqId + '_' + name, 'res', body + '']) + '\n')
 		}
 	})
 }
 
-let healthCheck = createHealthCheck(proxyClient, berlinHbf)
+let healthCheck = createHealthCheck(profileSwitchingClient, berlinHbf)
 
 if (process.env.REDIS_URL) {
 	const redis = new Redis(process.env.REDIS_URL || null)
-	proxyClient = createCachedHafasClient(proxyClient, createRedisStore(redis), {
+	profileSwitchingClient = createCachedHafasClient(profileSwitchingClient, createRedisStore(redis), {
 		cachePeriods: {
 			locations: 6 * 60 * 60 * 1000, // 6h
 		},
@@ -153,14 +156,14 @@ const config = {
 	modifyRoutes,
 }
 
-const api = await createHafasRestApi(proxyClient, config, (api) => {
+const api = await createHafasRestApi(profileSwitchingClient, config, (api) => {
 	api.use('/', serveStatic(docsRoot, {
 		extensions: ['html', 'htm'],
 	}))
 })
 
 export {
-	proxyClient as hafas,
+	profileSwitchingClient as hafas,
 	config,
 	api,
 }
