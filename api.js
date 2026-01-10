@@ -47,7 +47,7 @@ const mapRouteParsersWithDynamicProfile = (route, parsers) => {
 		profile: {
 			description: 'db-vendo-client profile to use for this request',
 			type: 'string',
-			default: 'dbnav',
+			default: 'db',
 			parse: parseString,
 		},
 	}
