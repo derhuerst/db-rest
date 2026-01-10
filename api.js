@@ -56,7 +56,7 @@ const mapRouteParsersWithDynamicProfile = (route, parsers) => {
 const profileSwitchingEndpoint = (endpoint) => {
 	return (...args) => {
 		const opt = args[args.length - 1];
-		const p = profileClients[opt.profile] || profileClients.dbnav;
+		const p = profileClients[opt.profile] || profileClients.db;
 		if (!p.departuresGetPasslist && !opt.stopovers) {
 			delete opt.stopovers;
 		}

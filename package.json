@@ -33,7 +33,7 @@
 		"node": ">=18"
 	},
 	"dependencies": {
-		"cached-hafas-client": "^5.1.8",
+		"cached-hafas-client": "^5.1.9",
 		"cli-native": "^1.0.0",
 		"db-stations": "^5.0.2",
 		"db-stations-autocomplete": "^4.1.0",
