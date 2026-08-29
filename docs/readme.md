@@ -10,6 +10,9 @@ The [DB HAFAS API is currently not available](https://github.com/public-transpor
 
 Also, the new [underlying APIs seem to have a **much lower rate limit** than the old HAFAS API](https://github.com/public-transport/db-vendo-client/issues/10). ⚠️ Hence, please check if you [can obtain the data needed for your use case in a more efficient manner](#why-not-to-use-this-api), e.g. by using the available GTFS feeds.
 
+> [!WARNING]
+> DB currently blocks many direct Node.js requests with HTTP `403` or `452`/`OPS_BLOCKED`, based on egress and TLS fingerprinting. The server's Docker image uses a persistent headless Chromium transport as a workaround; upstream availability is nevertheless not guaranteed. Changing the retired vendo hostname only fixes the earlier DNS failure, not this block. See the repository's [running instructions](../readme.md#db-upstream-blocking) when hosting your own instance.
+
 ## How it works
 
 Because it wraps [APIs](https://github.com/public-transport/db-vendo-client/blob/main/docs/db-apis.md) of [Deutsche Bahn](https://de.wikipedia.org/wiki/Deutsche_Bahn), it **includes most of the long-distance and regional traffic, as well as some international trains and local buses**. Essentially, it returns whatever data the [*DB Navigator* app](https://www.bahn.de/p/view/service/mobile/db-navigator.shtml) shows*, **including realtime delays and disruptions**.
@@ -20,7 +23,7 @@ Because it wraps [APIs](https://github.com/public-transport/db-vendo-client/blob
 - [API documentation](api.md) (run `npm run build` to generate)
 - [OpenAPI playground with API documentation](https://petstore.swagger.io/?url=https%3A%2F%2Fv6.db.transport.rest%2F.well-known%2Fservice-desc%0A)
 
-By default, the `dbnav` profile of [db-vendo-client](https://github.com/public-transport/db-vendo-client) will be used. On all endpoints, you can use the `profile` URL parameter to change to a different profile, e.g. `profile=db` or `profile=dbweb`. As per [db-vendo-client](https://github.com/public-transport/db-vendo-client)'s documentation, this will have an impact on returned details, parameter limits and quotas.
+By default, the `db` profile of [db-vendo-client](https://github.com/public-transport/db-vendo-client) will be used. On all endpoints, you can use the `profile` URL parameter to change to a different profile, e.g. `profile=dbnav` or `profile=dbweb`. As per [db-vendo-client](https://github.com/public-transport/db-vendo-client)'s documentation, this will have an impact on returned details, parameter limits and quotas.
 
 ## Why not to use this API?
 
