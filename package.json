@@ -30,7 +30,7 @@
 		"db"
 	],
 	"engines": {
-		"node": ">=18"
+		"node": ">=20"
 	},
 	"dependencies": {
 		"cached-hafas-client": "^5.1.9",
@@ -60,10 +60,10 @@
 		"tape": "^5.9.0"
 	},
 	"scripts": {
-		"build": "REDIS_URL='' ./build/index.js",
+		"build": "DB_REST_BUILD=true REDIS_URL='' VENDO_BROWSER_TRANSPORT=false ./build/index.js",
 		"start": "node index.js",
 		"lint": "eslint .",
-		"test": "node test/index.js | tap-min"
+		"test": "VENDO_BROWSER_TRANSPORT=false node test/index.js | tap-min"
 	},
 	"goatCounterUrl": "https://37462fdee48390778258.goatcounter.com/count"
 }

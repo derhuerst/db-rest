@@ -11,7 +11,7 @@ The [DB HAFAS API is currently not available](https://github.com/public-transpor
 Also, the new [underlying APIs seem to have a **much lower rate limit** than the old HAFAS API](https://github.com/public-transport/db-vendo-client/issues/10). ⚠️ Hence, please check if you [can obtain the data needed for your use case in a more efficient manner](#why-not-to-use-this-api), e.g. by using the available GTFS feeds.
 
 > [!WARNING]
-> DB currently blocks many direct Node.js requests with HTTP `403` or `452`/`OPS_BLOCKED`, based on egress and TLS fingerprinting. The server's Docker image uses a persistent headless Chromium transport as a workaround; upstream availability is nevertheless not guaranteed. Changing the retired vendo hostname only fixes the earlier DNS failure, not this block. See the repository's [running instructions](../readme.md#db-upstream-blocking) when hosting your own instance.
+> DB currently blocks many direct Node.js requests with HTTP `403` or `452`/`OPS_BLOCKED`, based on egress and TLS fingerprinting. The server uses a persistent headless Chromium transport as a workaround; upstream availability is nevertheless not guaranteed. Changing the retired vendo hostname only fixes the earlier DNS failure, not this block. See the repository's [running instructions](../readme.md#db-upstream-blocking) when hosting your own instance.
 
 ## How it works
 
