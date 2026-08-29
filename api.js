@@ -22,6 +22,7 @@ import {route as stations} from './routes/stations.js'
 import {route as station} from './routes/station.js'
 import {parseString} from 'hafas-rest-api/lib/parse.js'
 import {enrichStation} from 'db-vendo-client/parse/location.js'
+import {browserRequest, browserTransportEnabled} from './lib/browser-request.js'
 
 const pkg = require('./package.json')
 
@@ -35,10 +36,14 @@ const userAgent = process.env.USER_AGENT || process.env.HAFAS_USER_AGENT || pkg.
 const opt = {
 	enrichStations: (ctx, stop) => enrichStation(ctx, stop, stationIndex)
 }
+const useBrowserTransport = browserTransportEnabled()
+const withRequestTransport = profile => useBrowserTransport
+	? {...profile, request: browserRequest}
+	: profile
 const profileClients = {
-	'db': createClient(dbProfile, userAgent, opt),
-	'dbnav': createClient(dbnavProfile, userAgent, opt),
-	'dbweb': createClient(dbwebProfile, userAgent, opt),
+	'db': createClient(withRequestTransport(dbProfile), userAgent, opt),
+	'dbnav': createClient(withRequestTransport(dbnavProfile), userAgent, opt),
+	'dbweb': createClient(withRequestTransport(dbwebProfile), userAgent, opt),
 }
 
 const mapRouteParsersWithDynamicProfile = (route, parsers) => {
