@@ -4,12 +4,47 @@ const {parse: ndjsonParser} = _ndjson
 import {data as loyaltyCards} from 'db-vendo-client/format/loyalty-cards.js'
 import {fetchWithTestApi} from './util.js'
 import {pStations as pAllStations} from '../lib/db-stations.js'
-import {createBrowserRequest} from '../lib/browser-request.js'
+import {
+	browserTransportEnabled,
+	createBrowserRequest,
+	findChromiumExecutable,
+} from '../lib/browser-request.js'
 
 const NO_JOURNEYS = {
 	// todo?
 	journeys: [],
 }
+
+tape.test('browser transport is enabled by default and can be disabled', (t) => {
+	const original = process.env.VENDO_BROWSER_TRANSPORT
+	try {
+		delete process.env.VENDO_BROWSER_TRANSPORT
+		t.equal(browserTransportEnabled(), true)
+		process.env.VENDO_BROWSER_TRANSPORT = 'false'
+		t.equal(browserTransportEnabled(), false)
+		process.env.VENDO_BROWSER_TRANSPORT = 'true'
+		t.equal(browserTransportEnabled(), true)
+	} finally {
+		if (original === undefined) delete process.env.VENDO_BROWSER_TRANSPORT
+		else process.env.VENDO_BROWSER_TRANSPORT = original
+	}
+	t.end()
+})
+
+tape.test('browser transport rejects an invalid configured executable', (t) => {
+	const original = process.env.CHROMIUM_EXECUTABLE_PATH
+	try {
+		process.env.CHROMIUM_EXECUTABLE_PATH = '/does/not/exist/chromium'
+		t.throws(
+			() => findChromiumExecutable(),
+			/CHROMIUM_EXECUTABLE_PATH is not executable/,
+		)
+	} finally {
+		if (original === undefined) delete process.env.CHROMIUM_EXECUTABLE_PATH
+		else process.env.CHROMIUM_EXECUTABLE_PATH = original
+	}
+	t.end()
+})
 
 tape.test('browser transport sends and parses a vendo request', async (t) => {
 	let browserRequest
