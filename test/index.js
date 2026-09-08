@@ -4,11 +4,85 @@ const {parse: ndjsonParser} = _ndjson
 import {data as loyaltyCards} from 'db-vendo-client/format/loyalty-cards.js'
 import {fetchWithTestApi} from './util.js'
 import {pStations as pAllStations} from '../lib/db-stations.js'
+import {
+	browserTransportEnabled,
+	createBrowserRequest,
+	findChromiumExecutable,
+} from '../lib/browser-request.js'
 
 const NO_JOURNEYS = {
 	// todo?
 	journeys: [],
 }
+
+tape.test('browser transport is enabled by default and can be disabled', (t) => {
+	const original = process.env.VENDO_BROWSER_TRANSPORT
+	try {
+		delete process.env.VENDO_BROWSER_TRANSPORT
+		t.equal(browserTransportEnabled(), true)
+		process.env.VENDO_BROWSER_TRANSPORT = 'false'
+		t.equal(browserTransportEnabled(), false)
+		process.env.VENDO_BROWSER_TRANSPORT = 'true'
+		t.equal(browserTransportEnabled(), true)
+	} finally {
+		if (original === undefined) delete process.env.VENDO_BROWSER_TRANSPORT
+		else process.env.VENDO_BROWSER_TRANSPORT = original
+	}
+	t.end()
+})
+
+tape.test('browser transport rejects an invalid configured executable', (t) => {
+	const original = process.env.CHROMIUM_EXECUTABLE_PATH
+	try {
+		process.env.CHROMIUM_EXECUTABLE_PATH = '/does/not/exist/chromium'
+		t.throws(
+			() => findChromiumExecutable(),
+			/CHROMIUM_EXECUTABLE_PATH is not executable/,
+		)
+	} finally {
+		if (original === undefined) delete process.env.CHROMIUM_EXECUTABLE_PATH
+		else process.env.CHROMIUM_EXECUTABLE_PATH = original
+	}
+	t.end()
+})
+
+tape.test('browser transport sends and parses a vendo request', async (t) => {
+	let browserRequest
+	const request = createBrowserRequest(async () => ({
+		evaluate: async (_, req) => {
+			browserRequest = req
+			return {
+				url: req.url,
+				status: 200,
+				statusText: 'OK',
+				headers: {'content-type': 'application/vnd.example+json; charset=utf-8'},
+				body: JSON.stringify({items: [1]}),
+			}
+		},
+	}))
+	const profile = {
+		defaultLanguage: 'de',
+		transformReqBody: (_, body) => ({...body, transformed: true}),
+		transformReq: (_, req) => ({...req, query: {item: ['a', 'b']}}),
+		logRequest: () => {},
+		logResponse: () => {},
+	}
+	const result = await request({profile, opt: {}}, 'db-rest/test', {
+		endpoint: 'https://example.org/',
+		path: 'endpoint',
+		method: 'post',
+		body: {value: 1},
+		headers: {
+			'Accept': 'application/vnd.example+json',
+			'Content-Type': 'application/vnd.example+json',
+		},
+	})
+
+	t.deepEqual(result, {res: {items: [1]}, common: {}})
+	t.equal(browserRequest.url, 'https://example.org/endpoint?item[]=a&item[]=b')
+	t.equal(browserRequest.options.headers['user-agent'], undefined)
+	t.deepEqual(JSON.parse(browserRequest.options.body), {value: 1, transformed: true})
+})
 
 tape.test('/journeys?firstClass works', async (t) => {
 	await fetchWithTestApi({
