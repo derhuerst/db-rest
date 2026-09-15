@@ -6,6 +6,6 @@ api.listen(config.port, (err) => {
 		logger.error(err)
 		process.exit(1)
 	} else {
-		logger.info(`listening on ${config.port} (${config.hostname}).`)
+		logger.info(`listening on ${config.port} (${config.hostname}); upstream transport: ${api.locals.upstreamTransport}.`)
 	}
 })
