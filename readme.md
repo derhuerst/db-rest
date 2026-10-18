@@ -1,5 +1,34 @@
 # db-rest
 
+__This API is not operational anymore. You may try running your own instance or switching to an alternative:__
+
+## Why not to use this API?
+
+### Low rate limits
+
+[The underlying APIs seem to have a **much lower rate limit**](https://github.com/public-transport/db-vendo-client/issues/10) than before, i.e. you should not use this service to send many requests in an automated manner. Instead, you may:
+
+### Use GTFS and GTFS-RT and other datasets
+
+[GTFS](https://gtfs.org) and [GTFS-RT](https://gtfs.org/documentation/realtime/reference/) are file format/feed specifications for scheduled timetables and realtime updates like delays, respectively. They enable you to download datasets for entire transport associations, regions or even countries in one go, for local querying (e.g. with [MOTIS](https://github.com/motis-project/motis) and [motis-fptf-client](https://github.com/motis-project/motis-fptf-client) or [OTP](https://github.com/opentripplanner/OpenTripPlanner/)) and analysis (e.g. with [gtfs-via-postgres](https://github.com/public-transport/gtfs-via-postgres) and [print-gtfs-rt-cli](https://github.com/derhuerst/print-gtfs-rt-cli)). For Germany, [GTFS](https://www.opendata-oepnv.de/ht/de/organisation/delfi/startseite?tx_vrrkit_view%5Baction%5D=details&tx_vrrkit_view%5Bcontroller%5D=View&tx_vrrkit_view%5Bdataset_name%5D=deutschlandweite-sollfahrplandaten-gtfs&cHash=af4be4c0a9de59953fb9ee2325ef818f) and [GTFS-RT](https://mobilithek.info/offers/755009281410899968) feeds are provided by [DELFI e.V.](https://www.delfi.de/) Refined, publicly available feeds based on these and other sources can be obtained [via Transitous](https://github.com/public-transport/transitous/blob/main/feeds/de.json#L18-L61) or from [gtfs.de](https://gtfs.de). I.e. by using these you do not need to make any excessive API requests, however, the data quality and coverage of these feeds will currently in many cases still be inferior to what is provided by Deutsche Bahn.
+
+If you're just interested in stops/autocompletion:
+
+* [db-hafas-stations](https://github.com/derhuerst/db-hafas-stations)
+* [ZHV Haltestellenregister](https://zhv.wvigmbh.de/)
+
+### Use other APIs
+
+* [transitous.org](https://transitous.org) even with worldwide coverage based on GTFS/RT-feeds, however, as with any other APIs, [it should not be flooded with requests](https://transitous.org/api/). To ease migration from `db-rest`, it can be used in conjunction with [motis-fptf-client](https://github.com/motis-project/motis-fptf-client)
+* [DB (I)RIS-based APIs](https://developers.deutschebahn.com/db-api-marketplace/apis/product/timetables), if only data on trains is needed (no buses, trams etc.)
+* [hafas-client](https://github.com/public-transport/hafas-client) with the OEBB profile should also at least contain trains in Germany
+
+### Run your own instance of this API
+
+It may help to distribute the load by running your own instance of `db-rest`/[`db-vendo-client`](https://github.com/public-transport/db-vendo-client/). Both provide Dockerfiles/Docker images for easy setup of the REST API server. `db-rest` additionally includes a caching layer (if configured correctly), serves the OpenAPI specification, and does some more plumbing.
+
+## Using this API
+
 **A clean REST API wrapping around the [Deutsche Bahn HAFAS API](https://github.com/public-transport/db-hafas#db-hafas).** It is deployed at [`v6.db.transport.rest`](https://v6.db.transport.rest/).
 
 [**API Documentation**](docs/readme.md)
