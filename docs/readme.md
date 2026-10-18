@@ -1,26 +1,6 @@
 # `v6.db.transport.rest` documentation
 
-[`v6.db.transport.rest`](https://v6.db.transport.rest/) is a [REST API](https://restfulapi.net) for the public transportation system in Germany.
-
-[![API status](https://badgen.net/uptime-robot/status/m793274556-25c5e9bbab0297d91cda7134)](https://stats.uptimerobot.com/57wNLs39M/793274556)
-
-The [DB HAFAS API is currently not available](https://github.com/public-transport/hafas-client/issues/331), and it seems like it has been shut off permanently.
-
-**This wrapper API now uses [`db-vendo-client`](https://github.com/public-transport/db-vendo-client) as a backend, which covers most of the use cases**, notably except for `/stops/reachable-from` and `/radar`. Please also note some further limitations and caveats in the readme and documentation of [`db-vendo-client`](https://github.com/public-transport/db-vendo-client).
-
-Also, the new [underlying APIs seem to have a **much lower rate limit** than the old HAFAS API](https://github.com/public-transport/db-vendo-client/issues/10). ⚠️ Hence, please check if you [can obtain the data needed for your use case in a more efficient manner](#why-not-to-use-this-api), e.g. by using the available GTFS feeds.
-
-## How it works
-
-Because it wraps [APIs](https://github.com/public-transport/db-vendo-client/blob/main/docs/db-apis.md) of [Deutsche Bahn](https://de.wikipedia.org/wiki/Deutsche_Bahn), it **includes most of the long-distance and regional traffic, as well as some international trains and local buses**. Essentially, it returns whatever data the [*DB Navigator* app](https://www.bahn.de/p/view/service/mobile/db-navigator.shtml) shows*, **including realtime delays and disruptions**.
-
-*When comparing results from this API to what the DB Navigator app shows there might be occasional differences due to them utilizing different, not 100% identical backends.* 
-
-- [Getting Started](getting-started.md)
-- [API documentation](api.md) (run `npm run build` to generate)
-- [OpenAPI playground with API documentation](https://petstore.swagger.io/?url=https%3A%2F%2Fv6.db.transport.rest%2F.well-known%2Fservice-desc%0A)
-
-By default, the `dbnav` profile of [db-vendo-client](https://github.com/public-transport/db-vendo-client) will be used. On all endpoints, you can use the `profile` URL parameter to change to a different profile, e.g. `profile=db` or `profile=dbweb`. As per [db-vendo-client](https://github.com/public-transport/db-vendo-client)'s documentation, this will have an impact on returned details, parameter limits and quotas.
+__This API is not operational anymore. We recommend running your own instance or switching to an alternative:__
 
 ## Why not to use this API?
 
@@ -66,3 +46,25 @@ This API has [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_con
 ### Caching-friendly
 
 This API sends [`ETag`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag) & [`Cache-Control`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) headers, allowing clients cache responses properly.
+
+## Using this API
+
+[`v6.db.transport.rest`](https://v6.db.transport.rest/) is a [REST API](https://restfulapi.net) for the public transportation system in Germany.
+
+The [DB HAFAS API is currently not available](https://github.com/public-transport/hafas-client/issues/331), and it seems like it has been shut off permanently.
+
+**This wrapper API now uses [`db-vendo-client`](https://github.com/public-transport/db-vendo-client) as a backend, which covers most of the use cases**, notably except for `/stops/reachable-from` and `/radar`. Please also note some further limitations and caveats in the readme and documentation of [`db-vendo-client`](https://github.com/public-transport/db-vendo-client).
+
+Also, the new [underlying APIs seem to have a **much lower rate limit** than the old HAFAS API](https://github.com/public-transport/db-vendo-client/issues/10). ⚠️ Hence, please check if you [can obtain the data needed for your use case in a more efficient manner](#why-not-to-use-this-api), e.g. by using the available GTFS feeds.
+
+## How it works
+
+Because it wraps [APIs](https://github.com/public-transport/db-vendo-client/blob/main/docs/db-apis.md) of [Deutsche Bahn](https://de.wikipedia.org/wiki/Deutsche_Bahn), it **includes most of the long-distance and regional traffic, as well as some international trains and local buses**. Essentially, it returns whatever data the [*DB Navigator* app](https://www.bahn.de/p/view/service/mobile/db-navigator.shtml) shows*, **including realtime delays and disruptions**.
+
+*When comparing results from this API to what the DB Navigator app shows there might be occasional differences due to them utilizing different, not 100% identical backends.* 
+
+- [Getting Started](getting-started.md)
+- [API documentation](api.md) (run `npm run build` to generate)
+- [OpenAPI playground with API documentation](https://petstore.swagger.io/?url=https%3A%2F%2Fv6.db.transport.rest%2F.well-known%2Fservice-desc%0A)
+
+By default, the `dbnav` profile of [db-vendo-client](https://github.com/public-transport/db-vendo-client) will be used. On all endpoints, you can use the `profile` URL parameter to change to a different profile, e.g. `profile=db` or `profile=dbweb`. As per [db-vendo-client](https://github.com/public-transport/db-vendo-client)'s documentation, this will have an impact on returned details, parameter limits and quotas.
